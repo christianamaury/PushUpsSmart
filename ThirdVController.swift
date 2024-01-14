@@ -9,18 +9,6 @@ import UIKit
 import GoogleMobileAds
 
 class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, GADBannerViewDelegate {
-
-    //..Core Data Context:
-    //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    //..An array of our UserAttributes - *Previous References*
-    //var models = [UserAttributes]()
-    
-    //..Core Data Models Array: Variable for assigning Purposes
-    //var modelsArray: [UserAttributes]?
-    
-    //..Core Data for Reference on the CoreData Delete Method
-    //var model = UserAttributes()
     
     //Logo Image Reference;
     @IBOutlet weak var logoImageReference: UIImageView!
@@ -31,20 +19,19 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     
     @IBOutlet weak var banner: GADBannerView!
     
-    
     //..Core Data Purposes:
     var pushUpsEnteredCore: Int16 = 0
     var pushUpsConvertion: String = ""
     var week1low1SavedData: [String] = []
     
-    //User Defaults Reference from the Second View Controller;
-    //let userDefaultsReference = SecondVController()
-    let userDefaultsReference = SecondVController()
-    //let userDefaultsReference = UserDefaults()
-    //let userDefaultsFViewReference = FourthVController()
+    //Product ID
+    let productID: String = "PushUpsSmartNoAds"
     
-    //User Defaults Shared Objects: Arrays;
-    //public let userDefaultSharedObjects = UserDefaults.standard
+    //User Defaults Reference from the Second View Controller;
+    let userDefaultsReference = SecondVController()
+    
+    //References of the View Controller variables;
+    var variablesViewController = ViewController()
 
     //WeeksReferenceProgram..
     var WeeksDays: [String] = []
@@ -109,7 +96,7 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         }
         else
         {
-            Alert.showAlertBox(on: self, with: "Invalid enter 😅", message: "Please fill out the require field ✅")
+            Alert.showAlertBox(on: self, with: "Invalid Input❗️", message: "Please fill out the require field ✅")
         }
         
     }
@@ -182,6 +169,18 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     {
         super.viewDidLoad()
         
+        //If user actually bought the app
+        if isPurchased() {
+            
+            //..Remove All Ads
+            removingAllAds()
+        }
+        
+        else {
+            //Show Ads
+            showingBannerAds()
+        }
+        
         banner.isHidden = true
         banner.delegate = self
         banner.adUnitID = "ca-app-pub-3187572158588519/7051416203"
@@ -193,7 +192,7 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         PushUpInput.delegate = self
         
         //Adding the placeholderText Text Color
-        let placeholderText = NSAttributedString(string: "Enter a numeric value", attributes: [NSAttributedString.Key.foregroundColor:UIColor.lightGray])
+        let placeholderText = NSAttributedString(string: "A Number?", attributes: [NSAttributedString.Key.foregroundColor:UIColor.lightGray])
         PushUpInput.attributedPlaceholder = placeholderText
         
         //..Picker View Reference..
@@ -204,37 +203,8 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         super.viewWillDisappear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        //..Saving User Input
-        //pushUpsEntered = Int(PushUpInput.text!)!
-        
-        //deletingItemCoreData(userData: model)
-        
-        //..Adidng informatin to our Core Data;
-        //creatingItemsCoreData(name: testingPurposes, userPushUpsEntered: pushUpsEnteredCore)
-        
-        
         self.logoImageReference.image = UIImage(named: "LogoReference")
-        
-        //..Testing
-//          deletingItemCoreData(userData: models)
-        /*
-        //..Fetching Core Data
-        let fetchRequest: NSFetchRequest <UserEntity> = UserEntity.fetchRequest()
-        
-        do{
-           let userObject = try PersistentServices.context.fetch(fetchRequest)
-           
-        }
-        catch{
-            
-            if let error = error as NSError?
-            {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-                
-            }
-        }
-        */
-      
+
         WeeksDays = ["Week1-Day1", "Week1-Day2", "Week1-Day3", "Week2-Day1", "Week2-Day2", "Week2-Day3", "Week3-Day1", "Week3-Day2", "Week3-Day3", "Week4-Day1", "Week4-Day2", "Week4-Day3", "Week5-Day1", "Week5-Day2", "Week5-Day3", "Week6-Day1", "Week6-Day2", "Week6-Day3"]
         
         week1day1Data = Weeks (Week: "Week1Day1", Week1Low1: ["2", "3", "2", "2", "+3"], Week1Medium1: ["6", "6", "4", "4", "+5"], Week1High1: ["10", "12", "7", "7", "+9"])
@@ -287,20 +257,71 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     
     //Tells the delegate an ad request loaded an Ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        banner.isHidden = false
+        
+        //banner.isHidden = false
+        if(isPurchased())
+        {
+            banner.isHidden = true
+        }
+        else{
+            banner.isHidden = false
+        }
         
     }
     
     //Tells the delegate an ad request failed
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         banner.isHidden = true
+        
+        if(isPurchased())
+        {
+            banner.isHidden = true
+        }
+     
+    }
+    
+    func showingBannerAds() {
+        
+        let removeAllAdsPurchase = userDefaultsReference.userDefaults.bool(forKey: productID)
+//        let removeAllAdsPurchase = purchasesSavingData.bool(forKey: productID)
+        if(removeAllAdsPurchase)
+        {
+            //If its true, remove all Ads
+            banner.isHidden = true
+        }
+        else {
+            banner.isHidden = false
+            
+        }
+    }
+
+    
+    func removingAllAds(){
+    
+        userDefaultsReference.userDefaults.set(true, forKey: productID)
+//    purchasesSavingData.set(true, forKey: productID)
+        
+    }
+    
+    // If the application has been bought before;
+     func isPurchased() -> Bool {
+         let purchasesStatus = userDefaultsReference.userDefaults.bool(forKey: productID)
+    //        let purchasesStatus = purchasesSavingData.bool(forKey: productID)
+        if purchasesStatus {
+            print("Previously Purchased")
+            return true
+            
+            //..Whether Shows Ads or Not;
+        }
+        
+        else{
+            print("Never Purchased")
+            return false
+        }
+        
     }
 
 }
-
-//Allowed Characters to enter
-
-
 
 
 //..It's called when return key is press, return NO to ignore;
@@ -327,7 +348,7 @@ extension ThirdVController: UITextFieldDelegate {
             {
                 //Entered Character isn't allowed
                 //Showing an invalid input message for the user:
-                Alert.showAlertBox(on: self, with: "Invalid Input Character 😅", message: "Please make your to enter a number in the require field ✅")
+                Alert.showAlertBox(on: self, with: "Invalid Input 😅", message: "Please make sure to enter a number in the require field ✅")
                 return false
             }
         }

@@ -23,9 +23,12 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     
     @IBOutlet weak var banner: GADBannerView!
     var interstitial: GADInterstitial!
-    
+
     var desiredRandomNumber: Int = 2
     var randomNumber: Int = 0
+    
+    //Product ID..
+    let productID: String = "PushUpsSmartNoAds"
     
     //Timer variable for the Random Integer Generator
     var timerInterstialAds: Timer?
@@ -54,6 +57,9 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     let userDefaultsReference = SecondVController()
     let variablesReferenceSVController = SecondVController()
     
+    //Access to the variables of the View Controller
+    var variablesOfTheViewController = ViewController()
+    
     //WeeksReferenceProgram..
     var WeeksDays: [String] = []
     var week1day1Data: Weeks?
@@ -75,8 +81,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     var week6Day2Data: Weeks?
     var week6Day3Data: Weeks?
     
-  
-    
+
     //Timer Reference..
     var timer = Timer()
     var loadTimer = Timer()
@@ -190,7 +195,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     //..Button to go to ResetWorkOut View Controller
     @IBAction func resetWorkOutButton(_ sender: Any)
     {
-        Alert.showAlertBox(on: self, with: "Your workout has been deleted 😅", message: "Please select a new workout ✅")
+        Alert.showAlertBox(on: self, with: "Your workout has been deleted 😅", message: "Please select a new workout to continue your journey 😄✅")
         
         //Delay for 2scs, right after it will show the Third View Controller to select a new workout;
         DispatchQueue.main.asyncAfter(deadline: .now() + 2)
@@ -363,7 +368,17 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
             self.userDefaultsReference.userDefaults.synchronize()
             
             //..Moving to the Reset Workout View Controller..
-            self.performSegue(withIdentifier: "BackToThirdVController", sender: self)
+            //self.performSegue(withIdentifier: "BackToThirdVController", sender: self)
+            
+            //Setting user agreement back to false
+            //self.userDefaultsReference.userDefaults.set(false, forKey: "AgreementAccepted")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "AgreementAccepted")
+            self.userDefaultsReference.userDefaults.synchronize()
+            
+            //Back to the Main View Controller so the user can also decide if they would like to remove All Ads;
+            //Segue Identifier, First View Controller: MainStartViewController
+            self.performSegue(withIdentifier: "MainStartViewController", sender: self)
   
         }
      
@@ -408,10 +423,23 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         //In order to show the Ads, the number needs to be: 2
         if(desiredRandomNumber == randomNumber)
         {
-            //Showing Interstial Ads to the user;
+            if(isPurchased()){
+              
+                //Do not display any Ads. Remove All Interestial Ads.
+                print("User already removed the Ads")
+                
+            } 
+            else{
+                
+            //Showing Interstial Ads to the user, User haven't removed all Ads;
             showInterstitial()
+                
+            }
         }
-        else {return}
+        else {
+            
+            desiredRandomNumber = 0
+        }
         
     }
     
@@ -421,7 +449,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         
         if let value = userDefaultsReference.userDefaults.value(forKey: "InitialWorkout")
         {
-       
             resumeUserPushUpProgram()
         }
         
@@ -443,13 +470,69 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     
     //Tells the delegate an ad request loaded an Ad.
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        banner.isHidden = false
+        
+        //banner.isHidden = false
+        
+        //If the user already bought the item to remove all ads, hide the banner
+        if(isPurchased()) {
+            banner.isHidden = true
+        }
+        else{
+            banner.isHidden = false
+        }
         
     }
     
     //Tells the delegate an ad request failed
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        
         banner.isHidden = true
+        
+        //If the user already bought the item to remove all ads, hide the banner
+        if(isPurchased()) {
+            banner.isHidden = true
+            
+        }
+    }
+    // If the application has been bought before;
+     func isPurchased() -> Bool {
+         let purchasesStatus = userDefaultsReference.userDefaults.bool(forKey: productID)
+//        let purchasesStatus = purchasesSavingData.bool(forKey: productID)
+        if purchasesStatus {
+            print("Previously Purchased")
+            return true
+            
+            //..Whether Shows Ads or Not;
+        }
+        
+        else{
+            print("Never Purchased")
+            return false
+        }
+        
+    }
+    
+    func showingBannerAds() {
+        
+        let removeAllAdsPurchase = userDefaultsReference.userDefaults.bool(forKey: productID)
+//        let removeAllAdsPurchase = purchasesSavingData.bool(forKey: productID)
+        if(removeAllAdsPurchase)
+        {
+            //If its true, remove all Ads
+            banner.isHidden = true
+        }
+        else {
+            banner.isHidden = false
+            
+        }
+    }
+
+    
+    func removingAllAds(){
+    
+        userDefaultsReference.userDefaults.set(true, forKey: productID)
+//    purchasesSavingData.set(true, forKey: productID)
+        
     }
     
     //Create/Load another secondary interstial Ads after the first has been displayed;
@@ -463,6 +546,9 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        //App Instructions;
+        Alert.showAlertBox(on: self, with: "Make sure to rest after completing each set 😅", message: "Please rest first and then do the next set. Once you have completed all sets, make sure to rest the next day. We recommend to perform this workout on Monday, Wednesday and Friday or as you prefer as long as you're resting one day in between each workout day ✅")
         
         //We don't know whether we have an Ad to show to the user;
         banner.isHidden = true
@@ -486,207 +572,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         
         if let initialWorkout = userDefaultsReference.userDefaults.value(forKey: "InitialWorkout") as? Bool
         {
-            
-////          var testing1 = userDefaultsReference.userDefaults.value(forKey: "week1day1BasicCompletion")
-//            var week1day1BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week1day1BasicCompletion")
-//
-//            var week1day1MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week1day1MediumCompletion")
-//
-//            var week1day1AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week1day1AdvanceCompletion")
-//
-//            var week1day2BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week1day2BasicCompletion")
-//
-//            var week1day2AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week1day2AdvanceCompletion")
-//
-//            var week1day3BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week1day3BasicCompletion")
-//
-//
-//            var week1day2MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week1day2MediumCompletion")
-//
-//            var week1day3MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week1day3MediumCompletion")
-//
-//
-//            var week1day3AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week1day3AdvanceCompletion")
-//
-//
-//            var week2day1BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week2day1BasicCompletion")
-//
-//
-//            var week2day1AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week2day1AdvanceCompletion")
-//
-//
-//            var week2day1MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week2day1MediumCompletion")
-//
-//
-//            var week2day2BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week2day2BasicCompletion")
-//
-//
-//            var week2day2MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week2day2MediumCompletion")
-//
-//
-//            var week2day2AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week2day2AdvanceCompletion")
-//
-//
-//            var week2day3BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week2day3BasicCompletion")
-//
-//
-//            var week2day3MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week2day3MediumCompletion")
-//
-//
-//            var week2day3AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week2day3AdvanceCompletion")
-//
-//
-//            var week3day1BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week3day1BasicCompletion")
-//
-//
-//            var week3day1MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week3day1MediumCompletion")
-//
-//
-//            var week3day1AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week3day1AdvanceCompletion")
-//
-//
-//            var week3day2BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week3day2BasicCompletion")
-//
-//
-//            var week3day2MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week3day2MediumCompletion")
-//
-//
-//            var week3day2AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week3day2AdvanceCompletion")
-//
-//
-//            var week3day3BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week3day3BasicCompletion")
-//
-//
-//            var week3day3MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week3day3MediumCompletion")
-//
-//
-//            var week3day3AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week3day3AdvanceCompletion")
-//
-//
-//            var week4day1BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week4day1BasicCompletion")
-//
-//
-//            var week4day1MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week4day1MediumCompletion")
-//
-//
-//            var week4day1AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week4day1AdvanceCompletion")
-//
-//
-//            var week4day2BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week4day2BasicCompletion")
-//
-//
-//            var week4day2MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week4day2MediumCompletion")
-//
-//
-//
-//            var week4day2AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week4day2AdvanceCompletion")
-//
-//
-//            var week4day3BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week4day3BasicCompletion")
-//
-//
-//            var week4day3MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week4day3MediumCompletion")
-//
-//
-//            var week4day3AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week4day3AdvanceCompletion")
-//
-//
-//            var week5day1BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week5day1BasicCompletion")
-//
-//
-//            var week5day1MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week5day1MediumCompletion")
-//
-//
-//            var week5day1AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week5day1AdvanceCompletion")
-//
-//
-//            var week5day2BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week5day2BasicCompletion")
-//
-//
-//            var week5day2MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week5day2MediumCompletion")
-//
-//
-//            var week5day2AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week5day2AdvanceCompletion")
-//
-//
-//            var week5day3BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week5day3BasicCompletion")
-//
-//
-//            var week5day3MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week5day3MediumCompletion")
-//
-//
-//            var week5day3AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week5day3AdvanceCompletion")
-//
-//
-//            var week6day1BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week6day1BasicCompletion")
-//
-//
-//            var week6day1MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week6day1MediumCompletion")
-//
-//
-//            var week6day1AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week6day1AdvanceCompletion")
-//
-//
-//            var week6day2BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week6day2BasicCompletion")
-//
-//
-//            var week6day2MediumCompletion =  userDefaultsReference.userDefaults.value(forKey: "week6day2MediumCompletion")
-//
-//
-//            var week6day2AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week6day2AdvanceCompletion")
-//
-//
-//
-//            var week6day3BasicCompletion = userDefaultsReference.userDefaults.value(forKey: "week6day3BasicCompletion")
-//
-//
-//            var week6day3MediumCompletion = userDefaultsReference.userDefaults.value(forKey: "week6day3MediumCompletion")
-//
-//
-//            var week6day3AdvanceCompletion = userDefaultsReference.userDefaults.value(forKey: "week6day3AdvanceCompletion")
 
-            
-//            //WeeksReferenceProgram..
-//            var WeeksDays: [String] = []
-//            var week1day1Data: Weeks?
-//            var week1day2Data: Weeks?
-//            var week1day3Data: Weeks?
-//            var week2day1Data: Weeks?
-//            var week2Day2Data: Weeks?
-//            var week2Day3Data: Weeks?
-//            var week3Day1Data: Weeks?
-//            var week3Day2Data: Weeks?
-//            var week3Day3Data: Weeks?
-//            var week4Day1Data: Weeks?
-//            var week4Day2Data: Weeks?
-//            var week4Day3Data: Weeks?
-//            var week5Day1Data: Weeks?
-//            var week5Day2Data: Weeks?
-//            var week5Day3Data: Weeks?
-//            var week6Day1Data: Weeks?
-//            var week6Day2Data: Weeks?
-//            var week6Day3Data: Weeks?
-            
-//
-//            var programDataTransfer: Weeks?
-//            var programDataWeek1Day2: Weeks?
-//            var programDataWeek1Day3: Weeks?
-//            var programDataWeek2Day1: Weeks?
-//            var programDataWeek2Day2: Weeks?
-//            var programDataWeek2Day3: Weeks?
-//            var programDataWeek3Day1: Weeks?
-//            var programDataWeek3Day2: Weeks?
-//            var programDataWeek3Day3: Weeks?
-//            var programDataWeek4Day1: Weeks?
-//            var programDataWeek4Day2: Weeks?
-//            var programDataWeek4Day3: Weeks?
-//            var programDataWeek5Day1: Weeks?
-//            var programDataWeek5Day2: Weeks?
-//            var programDataWeek5Day3: Weeks?
-//            var programDataWeek6Day1: Weeks?
-//            var programDataWeek6Day2: Weeks?
-//            var programDataWeek6Day3: Weeks?
-            
             WeeksDays = ["Week1-Day1", "Week1-Day2", "Week1-Day3", "Week2-Day1", "Week2-Day2", "Week2-Day3", "Week3-Day1", "Week3-Day2", "Week3-Day3", "Week4-Day1", "Week4-Day2", "Week4-Day3", "Week5-Day1", "Week5-Day2", "Week5-Day3", "Week6-Day1", "Week6-Day2", "Week6-Day3"]
             
             week1day1Data = Weeks (Week: "Week1Day1", Week1Low1: ["2", "3", "2", "2", "+3"], Week1Medium1: ["6", "6", "4", "4", "+5"], Week1High1: ["10", "12", "7", "7", "+9"])
@@ -761,640 +647,11 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
             setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
             setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
 
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day1BasicCompletion") as? Bool
-//            {
-//                week1day1BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day1BasicCompletion")
-//
-//            }
-//            else{
-//
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day1BasicCompletion")
-//
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day1MediumCompletion") as? Bool {
-//
-//                week1day1MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day1MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day1MediumCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day1AdvanceCompletion") as? Bool {
-//
-//                week1day1AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day1AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day1AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day2BasicCompletion") as? Bool {
-//
-//                week1day2BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day2BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day2BasicCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day2BasicCompletion") as? Bool {
-//
-//                week1day2BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day2BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day2BasicCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day2AdvanceCompletion") as? Bool {
-//
-//                week1day2AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day2AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day2AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day3BasicCompletion") as? Bool {
-//
-//                week1day3BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day3BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day3BasicCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day2MediumCompletion") as? Bool {
-//
-//                week1day2MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day2MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day2MediumCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day3MediumCompletion") as? Bool {
-//
-//                week1day3MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day3MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day3MediumCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week1day3AdvanceCompletion") as? Bool {
-//
-//                week1day3AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week1day3AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week1day3AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week2day1BasicCompletion") as? Bool {
-//
-//                week2day1BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week2day1BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week2day1BasicCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week2day1AdvanceCompletion") as? Bool {
-//
-//                week2day1AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week2day1AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week2day1AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week2day1MediumCompletion") as? Bool {
-//
-//                week2day1MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week2day1MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week2day1MediumCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week2day2BasicCompletion") as? Bool {
-//
-//                week2day2BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week2day2BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week2day2BasicCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week2day2MediumCompletion") as? Bool {
-//
-//                week2day2MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week2day2MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week2day2MediumCompletion")
-//            }
-//
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week2day2AdvanceCompletion") as? Bool {
-//
-//                week2day2AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week2day2AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week2day2AdvanceCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week2day3BasicCompletion") as? Bool {
-//
-//                week2day3BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week2day3BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week2day3BasicCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week2day3MediumCompletion") as? Bool {
-//
-//                week2day3MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week2day3MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week2day3MediumCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week2day3AdvanceCompletion") as? Bool {
-//
-//                week2day3AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week2day3AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week2day3AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week3day1MediumCompletion") as? Bool {
-//
-//                week3day1MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week3day1MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week3day1MediumCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week3day1AdvanceCompletion") as? Bool {
-//
-//                week3day1AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week3day1AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week3day1AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week3day2BasicCompletion") as? Bool {
-//
-//                week3day1AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week3day2BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week3day2BasicCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week3day2MediumCompletion") as? Bool {
-//
-//                week3day2MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week3day2MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week3day2MediumCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week3day3BasicCompletion") as? Bool {
-//
-//                week3day3BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week3day3BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week3day3BasicCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week3day3MediumCompletion") as? Bool {
-//
-//                week3day3MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week3day3MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week3day3MediumCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week3day3AdvanceCompletion") as? Bool {
-//
-//                week3day3AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week3day3AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week3day3AdvanceCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week4day1BasicCompletion") as? Bool {
-//
-//                week4day1BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week4day1BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week4day1BasicCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week4day1MediumCompletion") as? Bool {
-//
-//                week4day1MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week4day1MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week4day1MediumCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week4day1AdvanceCompletion") as? Bool {
-//
-//                week4day1AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week4day1AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week4day1AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week4day2BasicCompletion") as? Bool {
-//
-//                week4day2BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week4day2BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week4day2BasicCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week4day3BasicCompletion") as? Bool {
-//
-//                week4day3BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week4day3BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week4day3BasicCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week4day3MediumCompletion") as? Bool {
-//
-//                week4day3MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week4day3MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week4day3MediumCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week4day3AdvanceCompletion") as? Bool {
-//
-//                week4day3AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week4day3AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week4day3AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week5day1BasicCompletion") as? Bool {
-//
-//                week5day1BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week5day1BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week5day1BasicCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week5day1MediumCompletion") as? Bool {
-//
-//                week5day1MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week5day1MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week5day1MediumCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week5day1AdvanceCompletion") as? Bool {
-//
-//                week5day1AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week5day1AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week5day1AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week5day2BasicCompletion") as? Bool {
-//
-//                week5day2BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week5day2BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week5day2BasicCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week5day2MediumCompletion") as? Bool {
-//
-//                week5day2MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week5day2MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week5day2MediumCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week5day2AdvanceCompletion") as? Bool {
-//
-//                week5day2AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week5day2AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week5day2AdvanceCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week5day2AdvanceCompletion") as? Bool {
-//
-//                week5day2AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week5day2AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week5day2AdvanceCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week5day3AdvanceCompletion") as? Bool {
-//
-//                week5day3AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week5day3AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week5day3AdvanceCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week6day1BasicCompletion") as? Bool {
-//
-//                week6day1BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week6day1BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week6day1BasicCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week6day1MediumCompletion") as? Bool {
-//
-//                week6day1MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week6day1MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week6day1MediumCompletion")
-//            }
-//
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week6day1AdvanceCompletion") as? Bool {
-//
-//                week6day1AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week6day1AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week6day1AdvanceCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week6day2BasicCompletion") as? Bool {
-//
-//                week6day2BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week6day2BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week6day2BasicCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week6day2MediumCompletion") as? Bool {
-//
-//                week6day2MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week6day2MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week6day2MediumCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week6day2AdvanceCompletion") as? Bool {
-//
-//                week6day2AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week6day2AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week6day2AdvanceCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week6day3BasicCompletion") as? Bool {
-//
-//                week6day3BasicCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week6day3BasicCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week6day3BasicCompletion")
-//            }
-//
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week6day3MediumCompletion") as? Bool {
-//
-//                week6day3MediumCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week6day3MediumCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week6day3MediumCompletion")
-//            }
-//
-//
-//            if let savedValue = userDefaultsReference.userDefaults.value(forKey: "week6day3AdvanceCompletion") as? Bool {
-//
-//                week6day3AdvanceCompletion = savedValue
-//                userDefaultsReference.userDefaults.set(savedValue, forKey: "week6day3AdvanceCompletion")
-//
-//            }
-//            else{
-//                let defaultValue = false
-//                userDefaultsReference.userDefaults.set(defaultValue, forKey: "week6day3AdvanceCompletion")
-//            }
-            
-
             //..Calling the resumeUserProgram
             resumeUserPushUpProgram()
             
         }
-        
-        
+
         //Calling the Regular Program;
         pushUpProgram()
                   
