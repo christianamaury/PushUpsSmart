@@ -15,10 +15,7 @@ class SecondVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     
     //Customer already accepted the agreement; Saving the response;
     public let userDefaults = UserDefaults()
-    
-    //Reference variables of the View Controller;
-//    let viewControllerVariables = ViewController()
-    
+        
     @IBOutlet weak var checkMarkReference: UIButton!
         
     //Disclaimer Label Text Reference;
@@ -59,6 +56,7 @@ class SecondVController: UIViewController, GADBannerViewDelegate, GADInterstitia
              
              //UserDefaults.resetStandardUserDefaults()
              userDefaults.set(true, forKey: "AgreementAccepted")
+             
              //Performing Segue to the Third View Controller
              performSegue(withIdentifier: "ThirdView", sender: self)
          }
@@ -81,6 +79,7 @@ class SecondVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         }
         
         else {
+            
             //Show Ads
             showingBannerAds()
         }
@@ -119,7 +118,7 @@ class SecondVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         self.disclaimerTextView.backgroundColor = UIColor(named:"White")
         
 
-        //,,Paragraph Styling Attributes
+        //Paragraph Styling Attributes..
         let style = NSMutableParagraphStyle()
         style.minimumLineHeight = 6
         style.lineSpacing = 7
@@ -184,7 +183,7 @@ class SecondVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     func showingBannerAds() {
         
         let removeAllAdsPurchase = userDefaults.bool(forKey: productID)
-//        let removeAllAdsPurchase = purchasesSavingData.bool(forKey: productID)
+
         if(removeAllAdsPurchase)
         {
             //If its true, remove all Ads
@@ -200,7 +199,7 @@ class SecondVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     func removingAllAds(){
     
       userDefaults.set(true, forKey: productID)
-//    purchasesSavingData.set(true, forKey: productID)
+   
         
     }
     

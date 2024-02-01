@@ -244,15 +244,6 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         
         week6Day3Data = Weeks(Week: "Week6Day3", Week1Low1: ["16", "16", "14", "14", "+50"], Week1Medium1: ["25", "25", "18", "18", "+55"], Week1High1: ["26", "26", "22", "22", "+60"])
 
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     }
     
     //Tells the delegate an ad request loaded an Ad.
@@ -283,7 +274,8 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     func showingBannerAds() {
         
         let removeAllAdsPurchase = userDefaultsReference.userDefaults.bool(forKey: productID)
-//        let removeAllAdsPurchase = purchasesSavingData.bool(forKey: productID)
+
+        
         if(removeAllAdsPurchase)
         {
             //If its true, remove all Ads
@@ -299,19 +291,18 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     func removingAllAds(){
     
         userDefaultsReference.userDefaults.set(true, forKey: productID)
-//    purchasesSavingData.set(true, forKey: productID)
         
     }
     
     // If the application has been bought before;
      func isPurchased() -> Bool {
          let purchasesStatus = userDefaultsReference.userDefaults.bool(forKey: productID)
-    //        let purchasesStatus = purchasesSavingData.bool(forKey: productID)
+         
         if purchasesStatus {
+            
             print("Previously Purchased")
             return true
             
-            //..Whether Shows Ads or Not;
         }
         
         else{
@@ -322,7 +313,6 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
     }
 
 }
-
 
 //..It's called when return key is press, return NO to ignore;
 extension ThirdVController: UITextFieldDelegate {
@@ -337,7 +327,7 @@ extension ThirdVController: UITextFieldDelegate {
         
         self.view.endEditing(true)
     }
-    
+  
     func textField(_ PushUpInput: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         //Allowed Characters to input on the TextField
@@ -348,7 +338,7 @@ extension ThirdVController: UITextFieldDelegate {
             {
                 //Entered Character isn't allowed
                 //Showing an invalid input message for the user:
-                Alert.showAlertBox(on: self, with: "Invalid Input 😅", message: "Please make sure to enter a number in the require field ✅")
+                Alert.showAlertBox(on: self, with: "Invalid Input 😅", message: "Please make sure to enter a number in the required field ✅")
                 return false
             }
         }
