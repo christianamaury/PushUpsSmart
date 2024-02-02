@@ -13294,7 +13294,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
 
         
                         //..Week 5, Day 1 - Basic
-                          if (inputEntered >= 31 && daySelected == "12" || week4day3BasicCompletion == true)
+                          if (inputEntered >= 31 && daySelected == "12" || week4day3BasicCompletion == true && week5day1BasicCompletion == false && week5day2BasicCompletion == false)
                           {
                               //Showing Interestial Ads
                               randomInterestialAds()
@@ -13340,13 +13340,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                               
                               if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                   
-                                  //Showing Interestial Ads
-                                  randomInterestialAds()
-                                  
                                   Set5Title.text = programDataWeek5Day1?.Week1Low1[4]
                                   Set5Title.layer.masksToBounds = true
                                   Set5Title.layer.cornerRadius = 10
                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                  
+                                  //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                  week5day1BasicCompletion = true
+                                  userDefaultsReference.userDefaults.set(true, forKey: "week5day1BasicCompletion")
+                                  week5day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1BasicCompletion")
                                   
                               }
                               
@@ -13396,9 +13398,8 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                               }
                           }
 
-                   
                             //..Week 5, Day 2 - Basic
-                           if (inputEntered >= 31 && daySelected == "13" || week5day1BasicCompletion == true)
+                           if (inputEntered >= 31 && daySelected == "13" || week5day1BasicCompletion == true && week5day2BasicCompletion == false && week5day3BasicCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -13444,13 +13445,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
                                    Set5Title.text = programDataWeek5Day2?.Week1Low1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week5day2BasicCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week5day2BasicCompletion")
+                                   week5day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2BasicCompletion")
                                    
                                }
                                
@@ -13501,7 +13504,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            }
                            
                            //..Week 5, Day 3 - Basic
-                           if (inputEntered >= 31 && daySelected == "14" || week5day2BasicCompletion == true)
+                           if (inputEntered >= 31 && daySelected == "14" || week5day2BasicCompletion == true && week5day3BasicCompletion == false && week6day1BasicCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -13549,13 +13552,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
                                    Set5Title.text = programDataWeek5Day3?.Week1Low1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week5day1BasicCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week5day1BasicCompletion")
+                                   week5day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1BasicCompletion")
                                    
                                }
                                
