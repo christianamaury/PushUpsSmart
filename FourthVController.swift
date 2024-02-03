@@ -13558,9 +13558,9 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
                                    
                                    //Changing the 1st week completion value so it doesn't acccess the first statement:
-                                   week5day1BasicCompletion = true
-                                   userDefaultsReference.userDefaults.set(true, forKey: "week5day1BasicCompletion")
-                                   week5day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1BasicCompletion")
+                                   week5day3BasicCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week5day3BasicCompletion")
+                                   week5day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3BasicCompletion")
                                    
                                }
                                
@@ -13613,7 +13613,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            }
                            
                            //..Week 6, Day 1 - Basic
-                           if (inputEntered >= 46 && daySelected == "15" || week5day3BasicCompletion == true)
+                           if (inputEntered >= 46 && daySelected == "15" || week5day3BasicCompletion == true && week6day1BasicCompletion == false && week6day2BasicCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -13659,13 +13659,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
                                    Set5Title.text = programDataWeek6Day1?.Week1Low1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week6day1BasicCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week6day1BasicCompletion")
+                                   week6day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1BasicCompletion")
                                    
                                }
                                
@@ -13717,11 +13719,9 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                }
                            
                            }
-
-                   
-                   
+        
                             //..Week 6, Day 2 - Basic
-                           if (inputEntered >= 46 && daySelected == "16" || week6day1BasicCompletion == true)
+                           if (inputEntered >= 46 && daySelected == "16" || week6day1BasicCompletion == true && week6day2BasicCompletion == false && week6day3BasicCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -13768,13 +13768,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
+                            
                                    Set5Title.text = programDataWeek6Day2?.Week1Low1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week6day2BasicCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week6day2BasicCompletion")
+                                   week6day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2BasicCompletion")
                                    
                                }
                                
@@ -13828,7 +13831,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
 
 
                             //..Week 6, Day 3 - Basic
-                           if (inputEntered >= 46 && daySelected == "17" || week6day2BasicCompletion == true)
+                           if (inputEntered >= 46 && daySelected == "17" || week6day2BasicCompletion == true && week6day3BasicCompletion == false && week1day1MediumCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -13877,13 +13880,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
+        
                                    Set5Title.text = programDataWeek6Day3?.Week1Low1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week6day3BasicCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week6day3BasicCompletion")
+                                   week6day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3BasicCompletion")
                                    
                                }
                                
