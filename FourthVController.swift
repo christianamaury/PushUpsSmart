@@ -13943,12 +13943,11 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            }
                            
                            //..Week 1, Day 1, Medium: 6-10
-                           if(inputEntered >= 6 && daySelected == "0" || week1day3BasicCompletion == true)
+                           if(inputEntered >= 6 && daySelected == "0" || week1day3BasicCompletion == true && week1day1MediumCompletion == false && week1day2MediumCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
                               
-                       
                                Set1Title.text = programDataTransfer?.Week1Medium1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
@@ -13990,13 +13989,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
                                    Set5Title.text = programDataTransfer?.Week1Medium1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week1day1MediumCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week1day1MediumCompletion")
+                                   week1day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1MediumCompletion")
                                    
                                }
                                
@@ -14050,7 +14051,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
 
                    
                             //..Week 1, Day 2 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "1" || week1day1MediumCompletion == true)
+                           if (inputEntered >= 6 && daySelected == "1" || week1day1MediumCompletion == true && week1day2MediumCompletion == false && week1day3MediumCompletion == false)
                            {
                                
                                 //Showing Interestial Ads
@@ -14098,13 +14099,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
                                    Set5Title.text = programDataWeek1Day2?.Week1Medium1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week1day2MediumCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week1day2MediumCompletion")
+                                   week1day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2MediumCompletion")
                                    
                                }
                                
@@ -14155,7 +14158,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                }
                            }
                            //..Week 1, Day 3 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "2" || week1day2MediumCompletion == true)
+                           if (inputEntered >= 6 && daySelected == "2" || week1day2MediumCompletion == true && week1day3MediumCompletion == false && week1day1AdvanceCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -14201,13 +14204,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4)
                                {
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
+                               
                                    Set5Title.text = programDataWeek1Day3?.Week1Medium1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week1day3MediumCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week1day3MediumCompletion")
+                                   week1day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3MediumCompletion")
                                    
                                }
                                
