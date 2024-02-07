@@ -410,7 +410,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     //Randomizer for showing the interestial Ads
     func randomInterestialAds() {
         desiredRandomNumber = 2
-        var randomNumber = Int.random(in: 0...5)
+        var randomNumber = Int.random(in: 0...4)
         
         //In order to show the Ads, the number needs to be: 2
         if(desiredRandomNumber == randomNumber)
@@ -712,12 +712,13 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         
         
         print ("Initial value of \(setWorkOutCounterReference)")
-   
-                   
+                      
                            //..Week 1, Day 1, Basic: < 5
                            //week1day1BasicCompletion == false
-                           if((inputEntered <= 5 && daySelected == "0") || (inputEntered <= 5 && daySelected == "0" && week1day1BasicCompletion == false))
+                           if((inputEntered <= 5 && daySelected == "0") || (week1day1BasicCompletion == false))
                            {
+                               //Showing Interestial Ads;
+                               randomInterestialAds()
                    
                                Set1Title.text = programDataTransfer?.Week1Low1[0]
                                Set1Title.layer.masksToBounds = true
@@ -746,23 +747,19 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    
                                 //Showing Interestial Ads;
                                 randomInterestialAds()
-//
                                 secondsCounterReference = 10
                                 userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                 secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-//                                   newWorkOutValue = newWorkOutValue + 1
+
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   //setWorkOutCounterReference = setWorkOutCounterReference + 1
-//                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-//                                   setWorkOutCounterReference = setWorkOutCounterReference + newWorkOutValue
+     
                                
                                    setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
                                    setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
                                    setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
                                    
                                    print("SetWorkOutCounterSaved Value Text Title 2, \(setWorkOutTitle3Saved)")
-//
                         
                                    //..To see the value of the variable above
                                    print(secondsCountReference)
@@ -777,9 +774,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    secondsCounterReference = secondsCounterReference - 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                                   
-                                   
-
+                        
                                    print ("Amount of seconds, Set Title 2: \(secondsCountReference)")
                                    print("Amount of sets, Set Title 2: \(setWorkOutCounterReference)")
                                    
@@ -882,9 +877,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                if ((secondsCountReference == 0 && setWorkOutCounter == 3) || (secondsCounterReference == 0 && setWorkOutCounterReference == 4) || (secondsCounterReference == 0 && setWorkOutTitle5Saved == 5))
                                {
                                    
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                                   
                                    //TESTING
 //                                 setWorkOutCounterReference = 4
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
@@ -923,8 +915,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if((secondsCountReference == 0 && setWorkOutCounter == 4) || (secondsCounterReference == 0 && setWorkOutCounterReference == 5))
                                {
-                                   
-//                                 setWorkOutCounterReference = 5
+
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
                                    setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
                                    
@@ -986,7 +977,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                    
                    // MARK: - Week 1, Day 2 - Basic
                    //..Week 1, Day 2 - Basic: <5
-                   if ((inputEntered <= 5 && daySelected == "1") || (week1day1BasicCompletion == true))
+                   if ((inputEntered <= 5 && daySelected == "1") || (week1day1BasicCompletion == true && week1day2BasicCompletion == false && week1day3BasicCompletion == false))
                    {
                        //Showing Interestial Ads;
                        randomInterestialAds()
@@ -1017,7 +1008,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            secondsCounterReference = 10
                            userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                            secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-//                           newWorkOutValue = newWorkOutValue + 1
+
                            userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
                            
                            
@@ -1223,10 +1214,10 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                        }
                        
                    }
-                   
-                   // MARK: - Week 1, Day 3 - Basic: < 5
-                   //..Week 1, Day 3 - Basic: < 5
-                           if ((inputEntered <= 5 && daySelected == "2") || (week1day2BasicCompletion == true))
+
+                            // MARK: - Week 1, Day 3 - Basic: < 5
+                           //..Week 1, Day 3 - Basic: < 5
+                           if ((inputEntered <= 5 && daySelected == "2") || (week1day2BasicCompletion == true && week1day3BasicCompletion == false && week2day1BasicCompletion == false))
                            {
                                
                                //Showing Interestial Ads;
@@ -1260,7 +1251,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-        //                           newWorkOutValue = newWorkOutValue + 1
+
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
                                    
                                    Set2Title.text = programDataWeek1Day3?.Week1Low1[1]
@@ -1487,7 +1478,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-        //                           newWorkOutValue = newWorkOutValue + 1
+       
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
                                    
                                    Set2Title.text = programDataWeek2Day1?.Week1Low1[1]
@@ -12278,7 +12269,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 }
                                 
                                 //week1day2BasicCompletion == true && week1day3BasicCompletion == false
-                                if((secondsCountReference == 0 && setWorkOutCounter == 5) || (week1day1BasicCompletion == true && week1day2BasicCompletion == true))
+                                if(secondsCountReference == 0 && setWorkOutCounter == 5)
                                 {
                                   
                                     Alert.showAlertBox(on: self, with: "Congrats completing your 3rd beginner training day in your 1st week ", message: "Make sure to rest your muscles for the next 24 hours now 😅")
@@ -12327,7 +12318,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
 
                     
                             //..Week 2, Day 1 - Basic: <5
-                            if (inputEntered <= 5 && daySelected == "3" || week1day3BasicCompletion == true && week2day1BasicCompletion == false && week2day2BasicCompletion == false )
+                            if (inputEntered <= 5 && daySelected == "3" || week1day3BasicCompletion == true && week2day1BasicCompletion == false && week2day2BasicCompletion == false)
                             {
                                 //Showing Interestial Ads
                                 randomInterestialAds()
@@ -14266,7 +14257,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            }
                            
                            //..Week 2, Day 1 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "3" || week1day3MediumCompletion == true)
+                           if (inputEntered >= 6 && daySelected == "3" || week1day3MediumCompletion == true && week2day1MediumCompletion == false && week2day3MediumCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -14314,13 +14305,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
                                    Set5Title.text = programDataWeek2Day1?.Week1Medium1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week2day1MediumCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week2day1MediumCompletion")
+                                   week2day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1MediumCompletion")
                                    
                                }
                                
@@ -14374,7 +14367,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            }
 
                             //..Week 2, Day 2 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "4" || week2day1MediumCompletion == true)
+                           if (inputEntered >= 6 && daySelected == "4" || week2day1MediumCompletion == true && week2day2MediumCompletion == false && week2day2MediumCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -14421,13 +14414,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
                                    Set5Title.text = programDataWeek2Day2?.Week1Medium1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week2day2MediumCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week2day2MediumCompletion")
+                                   week2day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2MediumCompletion")
                                }
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 5)
@@ -14477,9 +14472,8 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                }
                                
                            }
-                           
                            //..Week 2, Day 3 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "5" || week2day2MediumCompletion == true)
+                           if (inputEntered >= 6 && daySelected == "5" || week2day2MediumCompletion == true && week2day3MediumCompletion == false && week3day1MediumCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -14526,14 +14520,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
-                                   //..
                                    Set5Title.text = programDataWeek2Day3?.Week1Medium1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week2day3MediumCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week2day3MediumCompletion")
+                                   week2day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3MediumCompletion")
                                    
                                }
                                
@@ -14586,7 +14581,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            }
                            
                            //..Week 3, Day 1 - Medium
-                           if (inputEntered >= 21 && daySelected == "6" || week2day3MediumCompletion == true)
+                           if (inputEntered >= 21 && daySelected == "6" || week2day3MediumCompletion == true && week3day1MediumCompletion == false && week3day2MediumCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -14632,13 +14627,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                    
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
                                    Set5Title.text = programDataWeek3Day1?.Week1Medium1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week3day1MediumCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week3day1MediumCompletion")
+                                   week3day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1MediumCompletion")
                                    
                                }
                                
@@ -14690,7 +14687,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
 
                    
                           //..Week 3, Day 2 - Medium
-                          if ( inputEntered >= 21 && daySelected == "7" || week3day1MediumCompletion == true)
+                          if ( inputEntered >= 21 && daySelected == "7" || week3day1MediumCompletion == true && week3day2MediumCompletion == false && week3day3MediumCompletion == false)
                           {
                               //Showing Interestial Ads
                               randomInterestialAds()
@@ -14736,13 +14733,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                               
                               if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                   
-                                  //Showing Interestial Ads
-                                  randomInterestialAds()
-                                  
                                   Set5Title.text = programDataWeek3Day2?.Week1Medium1[4]
                                   Set5Title.layer.masksToBounds = true
                                   Set5Title.layer.cornerRadius = 10
                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                  
+                                  //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                  week3day2MediumCompletion = true
+                                  userDefaultsReference.userDefaults.set(true, forKey: "week3day2MediumCompletion")
+                                  week3day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2MediumCompletion")
                                   
                               }
                               
@@ -14795,7 +14794,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                           }
                           
                           //..Week 3, Day 3 - Medium
-                          if (inputEntered >= 21 && daySelected == "8" || week3day2MediumCompletion == true)
+                          if (inputEntered >= 21 && daySelected == "8" || week3day2MediumCompletion == true && week3day3MediumCompletion == false && week4day1MediumCompletion == false)
                           {
                               
                               //Showing Interestial Ads
@@ -14843,13 +14842,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                               
                               if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                   
-                                  //Showing Interestial Ads
-                                  randomInterestialAds()
-                                  
                                   Set5Title.text = programDataWeek3Day3?.Week1Medium1[4]
                                   Set5Title.layer.masksToBounds = true
                                   Set5Title.layer.cornerRadius = 10
                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                  
+                                  //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                  week3day3MediumCompletion = true
+                                  userDefaultsReference.userDefaults.set(true, forKey: "week3day3MediumCompletion")
+                                  week3day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3MediumCompletion")
                                   
                               }
                               
@@ -14904,7 +14905,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         
               
                             //..Week 4, Day 1 - Medium
-                          if (inputEntered >= 21 && daySelected == "9" || week3day3MediumCompletion == true)
+                          if (inputEntered >= 21 && daySelected == "9" || week3day3MediumCompletion == true && week4day1MediumCompletion == false && week4day2MediumCompletion == false)
                           {
                               //Showing Interestial Ads
                               randomInterestialAds()
@@ -14953,13 +14954,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                               
                               if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                   
-                                  //Showing Interestial Ads
-                                  randomInterestialAds()
-                                  
                                   Set5Title.text = programDataWeek4Day1?.Week1Medium1[4]
                                   Set5Title.layer.masksToBounds = true
                                   Set5Title.layer.cornerRadius = 10
                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                  
+                                  //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                  week4day1MediumCompletion = true
+                                  userDefaultsReference.userDefaults.set(true, forKey: "week4day1MediumCompletion")
+                                  week4day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1MediumCompletion")
                               }
                               
                               if(secondsCountReference == 0 && setWorkOutCounter == 5)
