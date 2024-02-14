@@ -16522,7 +16522,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            }
 
                            //..Week 3, Day 1 - Advanced
-                           if (inputEntered > 25 && daySelected == "6" || week2day3AdvanceCompletion == true)
+                           if (inputEntered > 25 && daySelected == "6" || week2day3AdvanceCompletion == true && week3day1AdvanceCompletion == false && week3day2AdvanceCompletion == false)
                            {
                                //Showing Interestial Ads
                                randomInterestialAds()
@@ -16568,14 +16568,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                }
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 4){
-                                   
-                                   //Showing Interestial Ads
-                                   randomInterestialAds()
-                                   
+                            
                                    Set5Title.text = programDataWeek3Day1?.Week1High1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                   week3day1AdvanceCompletion = true
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week3day1AdvanceCompletion")
+                                   week3day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1AdvanceCompletion")
                                }
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 5)
@@ -16629,7 +16631,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                     
                     
                             //..Week 3, Day 2 - Advanced
-                            if (inputEntered > 25 && daySelected == "7" || week3day1AdvanceCompletion == true)
+                            if (inputEntered > 25 && daySelected == "7" || week3day1AdvanceCompletion == true && week3day2AdvanceCompletion == false && week3day3AdvanceCompletion == false)
                             {
                                 //Showing Interestial Ads
                                 randomInterestialAds()
@@ -16676,13 +16678,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 
                                 if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                     
-                                    //Showing Interestial Ads
-                                    randomInterestialAds()
-                                    
                                     Set5Title.text = programDataWeek3Day2?.Week1High1[4]
                                     Set5Title.layer.masksToBounds = true
                                     Set5Title.layer.cornerRadius = 10
                                     Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                    
+                                    //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                    week3day2AdvanceCompletion = true
+                                    userDefaultsReference.userDefaults.set(true, forKey: "week3day2AdvanceCompletion")
+                                    week3day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2AdvanceCompletion")
                                 }
                                 
                                 if(secondsCountReference == 0 && setWorkOutCounter == 5)
@@ -16734,7 +16738,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                             }
                        
                             //..Week 3, Day 3 - Advanced
-                            if (inputEntered > 25 && daySelected == "8" || week3day2AdvanceCompletion == true)
+                            if (inputEntered > 25 && daySelected == "8" || week3day2AdvanceCompletion == true && week3day3AdvanceCompletion == false && week4day1AdvanceCompletion == false)
                             {
                                 //Showing Interestial Ads
                                 randomInterestialAds()
@@ -16782,13 +16786,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 
                                 if(secondsCountReference == 0 && setWorkOutCounter == 4){
                                     
-                                    //Showing Interestial Ads
-                                    randomInterestialAds()
-                                    
                                     Set5Title.text = programDataWeek3Day3?.Week1High1[4]
                                     Set5Title.layer.masksToBounds = true
                                     Set5Title.layer.cornerRadius = 10
                                     Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                    
+                                    //Changing the 1st week completion value so it doesn't acccess the first statement:
+                                    week3day3AdvanceCompletion = true
+                                    userDefaultsReference.userDefaults.set(true, forKey: "week3day3AdvanceCompletion")
+                                    week3day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3AdvanceCompletion")
                                     
                                 }
                                 
