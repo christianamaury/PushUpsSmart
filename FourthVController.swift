@@ -5172,11 +5172,9 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            
                            // MARK: - Week 2, Day 1 - Mediium if
                            //..Week 2, Day 1 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "3" || week1day3MediumCompletion == true)
+                           if ((inputEntered >= 6 && daySelected == "3") || (week1day3MediumCompletion == true && week2day1MediumCompletion == false && week2day3MediumCompletion == false))
                            {
-                               //Showing Interestial Ads;
-                               randomInterestialAds()
-                               
+                              
                                Set1Title.text = programDataWeek2Day1?.Week1Medium1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
@@ -5218,7 +5216,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 1 || secondsCountReference == 0 && setWorkOutCounterReference == 2 || secondsCounterReference == 0 && setWorkOutTitle3Saved == 2)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 1) || (secondsCountReference == 0 && setWorkOutCounterReference == 2) || (secondsCounterReference == 0 && setWorkOutTitle3Saved == 2))
                                {
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
@@ -5251,7 +5249,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 2 || secondsCountReference == 0 && setWorkOutCounterReference == 3 || secondsCounterReference == 0 && setWorkOutTitle4Saved == 4)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 2) || (secondsCountReference == 0 && setWorkOutCounterReference == 3) || (secondsCounterReference == 0 && setWorkOutTitle4Saved == 4))
                                {
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
@@ -5282,12 +5280,9 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 3 || secondsCountReference == 0 && setWorkOutCounterReference == 4 || secondsCounterReference == 0 && setWorkOutTitle5Saved == 5)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 3) || (secondsCountReference == 0 && setWorkOutCounterReference == 4) || (secondsCounterReference == 0 && setWorkOutTitle5Saved == 5))
                                {
                                    
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                          
                                    //Rest seconds Time;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
@@ -5314,7 +5309,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                }
                                
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 5 || secondsCountReference == 0 && setWorkOutCounterReference == 5)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 5) || (secondsCountReference == 0 && setWorkOutCounterReference == 5))
                                {
                                   
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
@@ -5373,7 +5368,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(false, forKey: "week1day3MediumCompletion")
                                    week1day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3MediumCompletion")
                                    
-                                   //week1Day2BasicCompletion set to True now;
                                    userDefaultsReference.userDefaults.set(true, forKey: "week2day1MediumCompletion")
                                    week2day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1MediumCompletion")
                                    
@@ -5381,13 +5375,11 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                            }
                    
-                            // MARK: - Week 2, Day 2 - Medium if
+                            // MARK: - Week 2, Day 2 - Resume
                             //..Week 2, Day 2 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "4" || week2day1MediumCompletion == true)
+                           if ((inputEntered >= 6 && daySelected == "4") || (week2day1MediumCompletion == true && week2day2MediumCompletion == false && week2day2MediumCompletion == false))
                            {
-                               //Showing Interestial Ads;
-                               randomInterestialAds()
-                       
+                            
                                Set1Title.text = programDataWeek2Day2?.Week1Medium1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
@@ -5428,7 +5420,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 1 || secondsCountReference == 0 && setWorkOutCounterReference == 2 || secondsCounterReference == 0 && setWorkOutTitle3Saved == 2)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 1) || (secondsCountReference == 0 && setWorkOutCounterReference == 2) || (secondsCounterReference == 0 && setWorkOutTitle3Saved == 2))
                                {
                                    
                                    //Showing Interestial Ads;
@@ -5461,7 +5453,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 2 || secondsCountReference == 0 && setWorkOutCounterReference == 3 || secondsCounterReference == 0 && setWorkOutTitle4Saved == 4)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 2) || (secondsCountReference == 0 && setWorkOutCounterReference == 3) || (secondsCounterReference == 0 && setWorkOutTitle4Saved == 4))
                                {
                                    
                                    //Showing Interestial Ads;
@@ -5493,11 +5485,9 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 3 || secondsCountReference == 0 && setWorkOutCounterReference == 4 || secondsCounterReference == 0 && setWorkOutTitle5Saved == 5)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 3) || (secondsCountReference == 0 && setWorkOutCounterReference == 4) || (secondsCounterReference == 0 && setWorkOutTitle5Saved == 5))
                                {
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                                   
+                                 
                                    //Rest seconds Time;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
@@ -5523,7 +5513,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 5 || secondsCountReference == 0 && setWorkOutCounterReference == 5)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 5) || (secondsCountReference == 0 && setWorkOutCounterReference == 5))
                                {
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
                                    setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
@@ -5578,25 +5568,22 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    
+                                   
                                    userDefaultsReference.userDefaults.set(false, forKey: "week2day1MediumCompletion")
                                    week2day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1MediumCompletion")
                                    
-                                   //week1Day2BasicCompletion set to True now;
                                    userDefaultsReference.userDefaults.set(true, forKey: "week2day2MediumCompletion")
                                    week2day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2MediumCompletion")
-                                   
+                                  
                                }
                                
                            }
                            
-                           // MARK: - Week 2, Day 3 - Medium if
+                           // MARK: - Week 2, Day 3 - Medium Resume
                            //..Week 2, Day 3 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "5" || week2day2MediumCompletion == true)
+                           if ((inputEntered >= 6 && daySelected == "5") || (week2day2MediumCompletion == true && week2day3MediumCompletion == false && week3day1MediumCompletion == false))
                            {
        
-                               //Showing Interestial Ads;
-                               randomInterestialAds()
-                               
                                Set1Title.text = programDataWeek2Day3?.Week1Medium1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
@@ -5637,7 +5624,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 1 || secondsCountReference == 0 && setWorkOutCounterReference == 2 || secondsCounterReference == 0 && setWorkOutTitle3Saved == 2)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 1) || (secondsCountReference == 0 && setWorkOutCounterReference == 2) || (secondsCounterReference == 0 && setWorkOutTitle3Saved == 2))
                                {
                                    
                                    //Showing Interestial Ads;
@@ -5671,7 +5658,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 2 || secondsCountReference == 0 && setWorkOutCounterReference == 3 || secondsCounterReference == 0 && setWorkOutTitle4Saved == 4)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 2) || (secondsCountReference == 0 && setWorkOutCounterReference == 3) || (secondsCounterReference == 0 && setWorkOutTitle4Saved == 4))
                                {
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
@@ -5701,10 +5688,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 3 || secondsCountReference == 0 && setWorkOutCounterReference == 4 || secondsCounterReference == 0 && setWorkOutTitle5Saved == 5){
-                                   
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
+                               if((secondsCountReference == 0 && setWorkOutCounter == 3) || (secondsCountReference == 0 && setWorkOutCounterReference == 4) || (secondsCounterReference == 0 && setWorkOutTitle5Saved == 5)){
                                    
                                    //Rest seconds Time;
                                    secondsCounterReference = 10
@@ -5731,7 +5715,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 5 || secondsCountReference == 0 && setWorkOutCounterReference == 5)
+                               if((secondsCountReference == 0 && setWorkOutCounter == 5) || (secondsCountReference == 0 && setWorkOutCounterReference == 5))
                                {
                                 
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
@@ -5790,7 +5774,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(false, forKey: "week2day2MediumCompletion")
                                    week2day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2MediumCompletion")
                                    
-                                   //week1Day2BasicCompletion set to True now;
                                    userDefaultsReference.userDefaults.set(true, forKey: "week2day3MediumCompletion")
                                    week2day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3MediumCompletion")
               
@@ -5798,7 +5781,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                       
                            }
                            
-                           // MARK: - Week 3, Day 1 - Medium if
+                           // MARK: - Week 3, Day 1 - Medium Resume
                            //..Week 3, Day 1 - Medium
                            if (inputEntered >= 21 && daySelected == "6" || week2day3MediumCompletion == true)
                            {
@@ -14509,7 +14492,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                }
                       
                            }
-                           
+                           // MARK: - Week 3, Day 1 - Medium Initial Run
                            //..Week 3, Day 1 - Medium
                            if (inputEntered >= 21 && daySelected == "6" || week2day3MediumCompletion == true && week3day1MediumCompletion == false && week3day2MediumCompletion == false)
                            {
