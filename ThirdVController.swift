@@ -89,8 +89,6 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
         if(PushUpInput.text != "")
         {
             pushUpsVerifier = true
-            //userDefaultsReference.set(false, forKey: "WorkoutHasBeenSelected")
-            //userDefaultsFViewReference.userDefaultsFourthVController.set(false, forKey: "WorkoutHasBeenSelected")
             performSegue(withIdentifier: "FVCIdentifier", sender: self)
             
         }
@@ -163,7 +161,6 @@ class ThirdVController: UIViewController, UIPickerViewDataSource, UIPickerViewDe
    
     }
     
-
     override func viewDidLoad()
     
     {
