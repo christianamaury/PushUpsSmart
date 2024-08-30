@@ -90,9 +90,14 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     var setCount = 0
     var setWorkOutCounter: Int = 0;
     var setWorkOutCounterReference: Int = 0;
+    
+    //Variables use for saving purposes on the pushUpProgram function;
+    var setWorkOutTitle1Saved: Int = 1;
+    var setWorkOutTitle2Saved: Int = 2;
     var setWorkOutTitle3Saved: Int = 3;
     var setWorkOutTitle4Saved: Int = 4;
     var setWorkOutTitle5Saved: Int = 5;
+    
     var newWorkOutValue: Int = 0;
     
     //..Suppose to be 25 down here
@@ -570,7 +575,15 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
             userDefaultsReference.userDefaults.set(setWorkOutCounter, forKey: "SetsCompleted")
             setWorkOutCounter += 1
             setWorkOutCounterReference = setWorkOutCounter
-            userDefaultsReference.userDefaults.set(setWorkOutCounter, forKey: "SetsCompleted")
+//            userDefaultsReference.userDefaults.set(setWorkOutCounter, forKey: "SetsCompleted")
+//            userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
+            
+            //TESTING
+            userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+            setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+            
+            
+            
             
             //Saving second time
             secondsCountReference = seconds
@@ -815,7 +828,13 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
             self.programDataWeek6Day1 = self.week6Day1Data
             self.programDataWeek6Day2 = self.week6Day2Data
             
-
+            //Settings Values to the variables
+            //TESTING
+            userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+            setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+            
+            setWorkOutTitle1Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle1Saved")
+            setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
             setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
             setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
             setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
@@ -827,6 +846,14 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
             resumeUserPushUpProgram()
             
         }
+        
+        //TESTING
+        //Settings Values to the variables
+        setWorkOutTitle1Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle1Saved")
+        setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
+        setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
+        setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
+        setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
 
         //Calling the Regular Program;
         pushUpProgram()
@@ -896,7 +923,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         
                       
                            // MARK: - Week 1, Day 1, Basic Resume
-                           if(inputEntered <= 5 && daySelected == "0" && week1day1BasicCompletion == false || week1day1BasicCompletion == false)
+                           if(inputEntered <= 5 && daySelected == "0" && week1day1BasicCompletion == false || week1day1BasicCompletion == false && setWorkOutTitle1Saved == 1)
                            {
                               
                                Set1Title.text = programDataTransfer?.Week1Low1[0]
@@ -904,9 +931,9 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                Set1Title.layer.cornerRadius = 10
                                Set1Title.layer.backgroundColor = UIColor.white.cgColor
                             
-                               setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                               setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                               setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
+//                               setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
+//                               setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
+//                               setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
                 
                                //Amounts of Rest Time available;
                                //secondsCounterReference = secondsCounterReference - 10
@@ -914,7 +941,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                print("Valor Inicial del secondsCounterReference: \(secondsCounterReference)")
              
-                               if(secondsCounterReference == 0)
+                               if(secondsCounterReference == 0 || setWorkOutTitle2Saved == 2)
                                {
                               
                                 //Showing Interestial Ads;
@@ -937,6 +964,11 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    Set2Title.layer.cornerRadius = 10
                                    Set2Title.layer.backgroundColor = UIColor.white.cgColor
                                    
+                                   //Count Saved Completion
+                                   setWorkOutTitle2Saved = 2
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle2Saved, forKey: "setWorkOutTitle2Saved")
+                                   setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
+                                   
                                    //Rest seconds Time; TESTING
                                    //secondsCounterReference = secondsCounterReference - 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
@@ -947,7 +979,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                         
                                }
                                
-                               if((setWorkOutCounterReference == 2) || (secondsCounterReference == 0 && setWorkOutTitle3Saved == 2))
+                               if(secondsCounterReference == 0 || setWorkOutTitle3Saved == 3 || setWorkOutCounterReference == 2)
                                   
                                {
                                    //Showing Interestial Ads;
@@ -956,9 +988,14 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
                                    
                                    //Count Saved Completion
-                                   setWorkOutTitle3Saved = 2
+                                   setWorkOutTitle3Saved = 3
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
                                    setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
+                                   
+//                                   //Count Saved Completion
+//                                   setWorkOutTitle3Saved = 2
+//                                   userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
+//                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
                                    
                                    
                                    //Rest Second Timer;
@@ -981,7 +1018,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
 
                                }
                                
-                               if ((secondsCounterReference == 0 && setWorkOutCounterReference == 3) || (secondsCounterReference == 0 && setWorkOutTitle4Saved == 4))
+                               if (secondsCounterReference == 0 || setWorkOutTitle4Saved == 4 || setWorkOutCounterReference == 3 )
                                {
                               
                                    //Showing Interestial Ads;
@@ -1015,7 +1052,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                      
                                }
                                
-                               if ((secondsCounterReference == 0 && setWorkOutCounterReference == 4) || (secondsCounterReference == 0 && setWorkOutTitle5Saved == 5))
+                               if (secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                {
                                    
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
@@ -1048,7 +1085,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                              
                                }
                                
-                               if(secondsCounterReference == 0 && setWorkOutCounterReference == 5)
+                               if(secondsCounterReference == 0 || setWorkOutCounterReference == 5)
                                {
 
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
@@ -11758,6 +11795,10 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                Set1Title.layer.cornerRadius = 10
                                Set1Title.layer.backgroundColor = UIColor.white.cgColor
                                
+                               //Saving Workout Data whenever the user closes the app;
+                               setWorkOutTitle1Saved = 1
+                               userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
+                               
                                if(secondsCountReference == 0)
                                {
                                    //Showing Interestial Ads
@@ -11767,6 +11808,10 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    Set2Title.layer.masksToBounds = true
                                    Set2Title.layer.cornerRadius = 10
                                    Set2Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Saving Workout Data whenever the user closes the app;
+                                   setWorkOutTitle2Saved = 2
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle2Saved, forKey: "setWorkOutTitle2Saved")
                               
                                }
                                
@@ -11781,6 +11826,10 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    Set3Title.layer.masksToBounds = true
                                    Set3Title.layer.cornerRadius = 10
                                    Set3Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Saving Workout Data whenever the user closes the app;
+                                   setWorkOutTitle3Saved = 3
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
                                    
                                    print(secondsCountReference)
                                    print(setWorkOutCounter)
@@ -11797,6 +11846,10 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    Set4Title.layer.cornerRadius = 10
                                    Set4Title.layer.backgroundColor = UIColor.white.cgColor
                                    
+                                   //Saving Workout Data whenever the user closes the app;
+                                   setWorkOutTitle4Saved = 4
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle4Saved, forKey: "setWorkOutTitle4Saved")
+                                   
                                    print(setWorkOutCounter)
                                    
                                }
@@ -11809,6 +11862,10 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
                                    
+                                   //Saving Workout Data whenever the user closes the app;
+                                   setWorkOutTitle5Saved = 5
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
+                            
                                }
                                
                                if(secondsCountReference == 0 && setWorkOutCounter == 5)
