@@ -1004,7 +1004,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if (secondsCounterReference == 0 || setWorkOutTitle4Saved == 4 || setWorkOutCounterReference == 3)
                                {
-                              
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
                                  
@@ -4957,154 +4956,151 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            
                            // MARK: - Week 1, Day 1 Medium Resume
                            //..Week 1, Day 1, Medium: 6-10
-                           if(inputEntered >= 6 && daySelected == "0" && week1day1MediumCompletion == false || week1day3BasicCompletion == true && week1day1MediumCompletion == false && week1day2MediumCompletion == false)
+                           if(inputEntered >= 6 && daySelected == "0" && week1day1MediumCompletion == false || week1day3BasicCompletion == true && week1day1MediumCompletion == false && week1day2MediumCompletion == false && setWorkOutTitle1Saved == 1)
                            {
-                          
-                               Set1Title.text = programDataTransfer?.Week1Medium1[0]
+                               
+                               Set1Title.text = programDataTransfer?.Week1Low1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
                                Set1Title.layer.backgroundColor = UIColor.white.cgColor
-                               
-                               setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                               setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                               setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
-                               
+                            
                                //Amounts of Rest Time available;
-                               secondsCounterReference = secondsCounterReference - 10
-                               userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                               secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                              userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                               
+                              //Saving Previous WorkoutReference number;
+                               setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                               userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                               setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                          
-                               if(secondsCountReference == 0)
+                               if(secondsCounterReference == 0 || setWorkOutTitle2Saved == 2 || setWorkOutCounterReference == 1)
                                {
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
-                                   
+                                      
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-      
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   
-                                   Set2Title.text = programDataTransfer?.Week1Medium1[1]
-                                   Set2Title.layer.masksToBounds = true
-                                   Set2Title.layer.cornerRadius = 10
-                                   Set2Title.layer.backgroundColor = UIColor.white.cgColor
-                                   
-                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                                   setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                                   setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
-                                   
-                                   //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                               
+                                      //Saving Previous WorkoutReference number;
+                                      setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                      userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                      setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+         
+                                      Set2Title.text = programDataTransfer?.Week1Low1[1]
+                                      Set2Title.layer.masksToBounds = true
+                                      Set2Title.layer.cornerRadius = 10
+                                      Set2Title.layer.backgroundColor = UIColor.white.cgColor
+                                      
+                                      //Count Saved Completion
+                                      setWorkOutTitle2Saved = 2
+                                      userDefaultsReference.userDefaults.set(setWorkOutTitle2Saved, forKey: "setWorkOutTitle2Saved")
+                                      setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
+                                      
+                                      //Rest seconds Time;
+                                      userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                      secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 1 || secondsCountReference == 0 && setWorkOutCounterReference == 2 || secondsCounterReference == 0 && setWorkOutTitle3Saved == 2)
+                               if(secondsCounterReference == 0 || setWorkOutTitle3Saved == 3 || setWorkOutCounterReference == 2)
                                {
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
-                                   
-                                   //Rest seconds Time;
-                                   secondsCounterReference = 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                                   
-                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                                   setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                                   setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
-                                   
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
-                                   
-                                   
-                                   Set3Title.text = programDataTransfer?.Week1Medium1[2]
-                                   Set3Title.layer.masksToBounds = true
-                                   Set3Title.layer.cornerRadius = 10
-                                   Set3Title.layer.backgroundColor = UIColor.white.cgColor
-                                   
+                              
                                    //Count Saved Completion
-                                   setWorkOutTitle3Saved = 2
+                                   setWorkOutTitle3Saved = 3
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
                                    setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
                                    
-                                   //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                               }
-                               
-                               if(secondsCountReference == 0 && setWorkOutCounter == 2 || secondsCountReference == 0 && setWorkOutCounterReference == 3 || secondsCounterReference == 0 && setWorkOutTitle4Saved == 4)
-                               {
-                                   
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                                   
-                                   //Rest seconds Time;
+                                   //Saving Previous WorkoutReference number;
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+          
+                                   //Rest Second Timer;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
+                                   Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                   Set3Title.layer.masksToBounds = true
+                                   Set3Title.layer.cornerRadius = 10
+                                   Set3Title.layer.backgroundColor = UIColor.white.cgColor
+                               
+                                   //Rest seconds Time; TESTING
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                               }
+                               
+                               if (secondsCounterReference == 0 || setWorkOutTitle4Saved == 4 || setWorkOutCounterReference == 3)
+                               {
+                                   //Showing Interestial Ads;
+                                   randomInterestialAds()
+                                 
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference , forKey: "SetsCompleted")
-                                   
                                    setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
-                                   
-                                   Set4Title.text = programDataTransfer?.Week1Medium1[3]
-                                   Set4Title.layer.masksToBounds = true
-                                   Set4Title.layer.cornerRadius = 10
-                                   Set4Title.layer.backgroundColor = UIColor.white.cgColor
                                    
                                    //Count Saved Completion
                                    setWorkOutTitle4Saved = 4
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle4Saved, forKey: "setWorkOutTitle4Saved")
                                    setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
                                    
-                                   //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                                   //Saving Previous WorkoutReference number;
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                                    
-                               }
-                               
-                               if(secondsCountReference == 0 && setWorkOutCounter == 3 || secondsCountReference == 0 && setWorkOutCounterReference == 4 || secondsCounterReference == 0 && setWorkOutTitle5Saved == 5)
-                               {
-                                 
                                    //Rest seconds Time;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
+                                   Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                   Set4Title.layer.masksToBounds = true
+                                   Set4Title.layer.cornerRadius = 10
+                                   Set4Title.layer.backgroundColor = UIColor.white.cgColor
+
+                                   //Rest seconds Time; TESTING
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set5Title.text = programDataTransfer?.Week1Medium1[4]
-                                   Set5Title.layer.masksToBounds = true
-                                   Set5Title.layer.cornerRadius = 10
-                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
-                                   
+                               }
+                               
+                               if (secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
+                               {
                                    //Count Saved Completion
                                    setWorkOutTitle5Saved = 5
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
                                    setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
                                    
-                                   //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                                   
-                               }
-                               
-                               if(secondsCountReference == 0 && setWorkOutCounter == 5 || secondsCountReference == 0 && setWorkOutCounterReference == 5)
-                               {
-                                   
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
-                                   
+                                   //Saving Previous WorkoutReference number;
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                              
                                    //Rest seconds Time;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
+                                   Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                   Set5Title.layer.masksToBounds = true
+                                   Set5Title.layer.cornerRadius = 10
+                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Rest seconds Time; TESTING
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                                   
+                               }
+                               
+                               if(secondsCounterReference == 0 || setWorkOutCounterReference == 5)
+                                    
+                               {
+                                   //Rest seconds Time;
+                                   secondsCounterReference = 10
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
                                    Alert.showAlertBox(on: self, with: "Congrats completing your 1st medium difficult training day in your 1st week ", message: "Make sure to rest your muscles for the next 24 hours now. 😅")
                                    
@@ -5144,9 +5140,12 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    setWorkOutTitle3Saved = 0
                                    setWorkOutTitle4Saved = 0
                                    setWorkOutTitle5Saved = 0
+                                   
+                                   //Resetting Pre-Saved Variables; Previous
                                    setWorkOutCounterReference = 0
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                                    
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
@@ -5156,6 +5155,27 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    
                                    userDefaultsReference.userDefaults.set(true, forKey: "week1day1MediumCompletion")
                                    week1day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1MediumCompletion")
+                                   
+                                   //Previous Count Saved Completion;
+                                   setWorkOutTitle1Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
+                                   setWorkOutTitle1Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle1Saved")
+                                   
+                                   setWorkOutTitle2Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle2Saved, forKey: "setWorkOutTitle2Saved")
+                                   setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
+                                   
+                                   setWorkOutTitle3Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
+                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
+                                   
+                                   setWorkOutTitle4Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle4Saved, forKey: "setWorkOutTitle4Saved")
+                                   setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
+                                   
+                                   setWorkOutTitle5Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
+                                   setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
                                
                                }
 
@@ -5163,155 +5183,153 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
 
                             // MARK: - Week 1, Day 2 - Medium Resume
                             //..Week 1, Day 2 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "1" && week1day2MediumCompletion == false || week1day1MediumCompletion == true && week1day2MediumCompletion == false && week1day3MediumCompletion == false)
+                           if (inputEntered >= 6 && daySelected == "1" && week1day2MediumCompletion == false || week1day1MediumCompletion == true && week1day2MediumCompletion == false && week1day3MediumCompletion == false && setWorkOutTitle1Saved == 1)
                            {
                                
-                                   Set1Title.text = programDataWeek1Day2?.Week1Medium1[0]
-                                   Set1Title.layer.masksToBounds = true
-                                   Set1Title.layer.cornerRadius = 10
-                                   Set1Title.layer.backgroundColor = UIColor.white.cgColor
+                               Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                               Set1Title.layer.masksToBounds = true
+                               Set1Title.layer.cornerRadius = 10
+                               Set1Title.layer.backgroundColor = UIColor.white.cgColor
                                
                                setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
                                setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
                                setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
                                
-                               //Amounts of Rest Time available;
-                               secondsCounterReference = secondsCounterReference - 10
-                               userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                               secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-
+                               //Saving Previous WorkoutReference number;
+                                setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                                
-                               if(secondsCountReference == 0)
+                               if(secondsCounterReference == 0 || setWorkOutTitle2Saved == 2 || setWorkOutCounterReference == 1)
                                {
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
-                                   
+                                      
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-      
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   
-                                   Set2Title.text = programDataWeek1Day2?.Week1Medium1[1]
+                               
+                                      //Saving Previous WorkoutReference number;
+                                      setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                      userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                      setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+
+                                   Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
                                    Set2Title.layer.masksToBounds = true
                                    Set2Title.layer.cornerRadius = 10
                                    Set2Title.layer.backgroundColor = UIColor.white.cgColor
+                            
+                                   //Count Saved Completion
+                                   setWorkOutTitle2Saved = 2
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle2Saved, forKey: "setWorkOutTitle2Saved")
+                                   setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
                                    
-                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                                   setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                                   setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
-                                   
-                                   //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
+                                   //Rest seconds Time; TESTING
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                  
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 1 || secondsCountReference == 0 && setWorkOutCounterReference == 2 || secondsCounterReference == 0 && setWorkOutTitle3Saved == 2)
+                               if(secondsCounterReference == 0 || setWorkOutTitle3Saved == 3 || setWorkOutCounterReference == 2)
                                {
-                                   
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
+                              
+                                   //Count Saved Completion
+                                   setWorkOutTitle3Saved = 3
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
+                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
                                    
-                                   //Rest seconds Time;
+                                   //Saving Previous WorkoutReference number;
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+          
+                                   //Rest Second Timer;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                                   setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                                   setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
-                                   
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
-                                   
-                                   Set3Title.text = programDataWeek1Day2?.Week1Medium1[2]
+                                   Set3Title.text = programDataTransfer?.Week1Low1[2]
                                    Set3Title.layer.masksToBounds = true
                                    Set3Title.layer.cornerRadius = 10
                                    Set3Title.layer.backgroundColor = UIColor.white.cgColor
-                                   
-                                   //Count Saved Completion
-                                   setWorkOutTitle3Saved = 2
-                                   userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
-                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                                   
-                                   //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
+                               
+                                   //Rest seconds Time; TESTING
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 2 || secondsCountReference == 0 && setWorkOutCounterReference == 3 || secondsCounterReference == 0 && setWorkOutTitle4Saved == 4)
+                               if(secondsCounterReference == 0 || setWorkOutTitle4Saved == 4 || setWorkOutCounterReference == 3)
                                {
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
-                                   
-                                   //Rest seconds Time;
-                                   secondsCounterReference = 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                                   
+                                 
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference , forKey: "SetsCompleted")
-                                   
                                    setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
-                                   
-                                   Set4Title.text = programDataWeek1Day2?.Week1Medium1[3]
-                                   Set4Title.layer.masksToBounds = true
-                                   Set4Title.layer.cornerRadius = 10
-                                   Set4Title.layer.backgroundColor = UIColor.white.cgColor
                                    
                                    //Count Saved Completion
                                    setWorkOutTitle4Saved = 4
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle4Saved, forKey: "setWorkOutTitle4Saved")
                                    setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
                                    
-                                   //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                                   //Saving Previous WorkoutReference number;
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                                    
-                               }
-                               
-                               if(secondsCountReference == 0 && setWorkOutCounter == 3 || secondsCountReference == 0 && setWorkOutCounterReference == 4 || secondsCounterReference == 0 && setWorkOutTitle5Saved == 5)
-                               {
-         
                                    //Rest seconds Time;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
+                                   Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                   Set4Title.layer.masksToBounds = true
+                                   Set4Title.layer.cornerRadius = 10
+                                   Set4Title.layer.backgroundColor = UIColor.white.cgColor
+
+                                   //Rest seconds Time; TESTING
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set5Title.text = programDataWeek6Day3?.Week1Low1[4]
-                                   Set5Title.layer.masksToBounds = true
-                                   Set5Title.layer.cornerRadius = 10
-                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
-                                   
+                               }
+                               
+                               if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
+                               {
                                    //Count Saved Completion
                                    setWorkOutTitle5Saved = 5
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
                                    setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
                                    
+                                   //Saving Previous WorkoutReference number;
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                              
                                    //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
+                                   secondsCounterReference = 10
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                                   
+                                   Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                   Set5Title.layer.masksToBounds = true
+                                   Set5Title.layer.cornerRadius = 10
+                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Rest seconds Time; TESTING
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
   
                                }
                                
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 5 || secondsCountReference == 0 && setWorkOutCounterReference == 5)
+                               if(secondsCounterReference == 0 || setWorkOutCounterReference == 5)
                                {
-                                   
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
                                    
                                    //Rest seconds Time;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                                   
                                    
                                    Alert.showAlertBox(on: self, with: "Congrats completing your 2nd medium difficult training day in your 1st week ", message: "Make sure to rest your muscles for the next 24 hours now. 😅")
                                    
@@ -5351,9 +5369,12 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    setWorkOutTitle3Saved = 0
                                    setWorkOutTitle4Saved = 0
                                    setWorkOutTitle5Saved = 0
+                                   
+                                   //Resetting Pre-Saved Variables; Previous
                                    setWorkOutCounterReference = 0
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                                    
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
@@ -5364,154 +5385,175 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(true, forKey: "week1day2MediumCompletion")
                                    week1day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2MediumCompletion")
                                    
+                                   //Previous Count Saved Completion;
+                                   setWorkOutTitle1Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
+                                   setWorkOutTitle1Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle1Saved")
+                                   
+                                   setWorkOutTitle2Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle2Saved, forKey: "setWorkOutTitle2Saved")
+                                   setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
+                                   
+                                   setWorkOutTitle3Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
+                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
+                                   
+                                   setWorkOutTitle4Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle4Saved, forKey: "setWorkOutTitle4Saved")
+                                   setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
+                                   
+                                   setWorkOutTitle5Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
+                                   setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
+                            
                                }
                            }
                             
                             // MARK: - Week 1, Day 3 - Medium Resume
                            //..Week 1, Day 3 - Medium: 6-10
-                           if (inputEntered >= 6 && daySelected == "2" && week1day3MediumCompletion == false || week1day2MediumCompletion == true && week1day3MediumCompletion == false && week1day1AdvanceCompletion == false)
+                           if (inputEntered >= 6 && daySelected == "2" && week1day3MediumCompletion == false || week1day2MediumCompletion == true && week1day3MediumCompletion == false && week1day1AdvanceCompletion == false && setWorkOutTitle1Saved == 1)
                            {
-                           
-                               Set1Title.text = programDataWeek1Day3?.Week1Medium1[0]
-                               Set1Title.layer.masksToBounds = true
-                               Set1Title.layer.cornerRadius = 10
-                               Set1Title.layer.backgroundColor = UIColor.white.cgColor
                                
-                               setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                               setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                               setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
+                                Set1Title.text = programDataWeek1Day3?.Week1Low1[0]
+                                Set1Title.layer.masksToBounds = true
+                                Set1Title.layer.cornerRadius = 10
+                                Set1Title.layer.backgroundColor = UIColor.white.cgColor
+                                
+                                //Amounts of Rest Time available;
+                               userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                
+                               //Saving Previous WorkoutReference number;
+                                setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                                
-                               //Amounts of Rest Time available;
-                                secondsCounterReference = secondsCounterReference - 10
-                                userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                               
-                               if(secondsCountReference == 0)
+                               if(secondsCounterReference == 0 || setWorkOutTitle2Saved == 2 || setWorkOutCounterReference == 1)
                                {
-                                   
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
-                                   
+                                      
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-      
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   
-                                   Set2Title.text = programDataWeek1Day3?.Week1Medium1[1]
-                                   Set2Title.layer.masksToBounds = true
-                                   Set2Title.layer.cornerRadius = 10
-                                   Set2Title.layer.backgroundColor = UIColor.white.cgColor
-                                   
-                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                                   setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                                   setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
-                                   
-                                   //Rest seconds Time; TESTING
-                                   secondsCounterReference = secondsCounterReference - 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                                   
+                               
+                                      //Saving Previous WorkoutReference number;
+                                      setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                      userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                      setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+           
+                                      Set2Title.text = programDataTransfer?.Week1Low1[1]
+                                      Set2Title.layer.masksToBounds = true
+                                      Set2Title.layer.cornerRadius = 10
+                                      Set2Title.layer.backgroundColor = UIColor.white.cgColor
+                                      
+                                      //Count Saved Completion
+                                      setWorkOutTitle2Saved = 2
+                                      userDefaultsReference.userDefaults.set(setWorkOutTitle2Saved, forKey: "setWorkOutTitle2Saved")
+                                      setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
+                                      
+                                      //Rest seconds Time; TESTING
+                                      userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                      secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 1 || secondsCountReference == 0 && setWorkOutCounterReference == 2 || secondsCounterReference == 0 && setWorkOutTitle3Saved == 2)
+                               if(secondsCounterReference == 0 || setWorkOutTitle3Saved == 3 || setWorkOutCounterReference == 2)
                                {
                                    //Showing Interestial Ads;
                                    randomInterestialAds()
-                                   
-                                   //Rest seconds Time;
-                                   secondsCounterReference = 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                                   
-                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                                   setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                                   setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
-                                   
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
-                                   
-                                   Set3Title.text = programDataWeek1Day3?.Week1Medium1[2]
-                                   Set3Title.layer.masksToBounds = true
-                                   Set3Title.layer.cornerRadius = 10
-                                   Set3Title.layer.backgroundColor = UIColor.white.cgColor
-                                   
+                              
                                    //Count Saved Completion
-                                   setWorkOutTitle3Saved = 2
+                                   setWorkOutTitle3Saved = 3
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
                                    setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
                                    
-                                   //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                               }
-                               
-                               if(secondsCountReference == 0 && setWorkOutCounter == 2 || secondsCountReference == 0 && setWorkOutCounterReference == 3 || secondsCounterReference == 0 && setWorkOutTitle4Saved == 4)
-                               {
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                                   
-                                   //Rest seconds Time;
+                                   //Saving Previous WorkoutReference number;
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+          
+                                   //Rest Second Timer;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
+                                   Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                   Set3Title.layer.masksToBounds = true
+                                   Set3Title.layer.cornerRadius = 10
+                                   Set3Title.layer.backgroundColor = UIColor.white.cgColor
+                               
+                                   //Rest seconds Time; TESTING
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                               }
+                               
+                               if (secondsCounterReference == 0 || setWorkOutTitle4Saved == 4 || setWorkOutCounterReference == 3)
+                               {
+                                   //Showing Interestial Ads;
+                                   randomInterestialAds()
+                                 
                                    userDefaultsReference.userDefaults.set(setWorkOutCounterReference , forKey: "SetsCompleted")
-                                   
                                    setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
-                                   
-                                   Set4Title.text = programDataWeek1Day3?.Week1Medium1[3]
-                                   Set4Title.layer.masksToBounds = true
-                                   Set4Title.layer.cornerRadius = 10
-                                   Set4Title.layer.backgroundColor = UIColor.white.cgColor
                                    
                                    //Count Saved Completion
                                    setWorkOutTitle4Saved = 4
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle4Saved, forKey: "setWorkOutTitle4Saved")
                                    setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
                                    
-                                   //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
-                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                               }
-                               
-                               if(secondsCountReference == 0 && setWorkOutCounter == 3 || secondsCountReference == 0 && setWorkOutCounterReference == 4 || secondsCounterReference == 0 && setWorkOutTitle5Saved == 5)
-                               {
-                            
+                                   //Saving Previous WorkoutReference number;
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   
                                    //Rest seconds Time;
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
-                                   
-                                   Set5Title.text = programDataWeek1Day3?.Week1Medium1[4]
-                                   Set5Title.layer.masksToBounds = true
-                                   Set5Title.layer.cornerRadius = 10
-                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
-                                   
+                                   Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                   Set4Title.layer.masksToBounds = true
+                                   Set4Title.layer.cornerRadius = 10
+                                   Set4Title.layer.backgroundColor = UIColor.white.cgColor
+
+                                   //Rest seconds Time; TESTING
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                               }
+                               
+                               if (secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
+                               {
                                    //Count Saved Completion
                                    setWorkOutTitle5Saved = 5
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
                                    setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
                                    
+                                   //Saving Previous WorkoutReference number;
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                              
                                    //Rest seconds Time;
-                                   secondsCounterReference = secondsCounterReference - 10
+                                   secondsCounterReference = 10
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                                   
+                                   Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                   Set5Title.layer.masksToBounds = true
+                                   Set5Title.layer.cornerRadius = 10
+                                   Set5Title.layer.backgroundColor = UIColor.white.cgColor
+                                   
+                                   //Rest seconds Time; TESTING
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
                                }
                                
-                               if(secondsCountReference == 0 && setWorkOutCounter == 5 || secondsCountReference == 0 && setWorkOutCounterReference == 5)
+                               if(secondsCounterReference == 0 || setWorkOutCounterReference == 5)
                                {
-                                       userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                       setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
-                                       
-                                       //Rest seconds Time;
-                                       secondsCounterReference = 10
-                                       userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                       secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
+                                   
+                                   //Rest seconds Time;
+                                   secondsCounterReference = 10
+                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                                   secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                
                                    
                                    Alert.showAlertBox(on: self, with: "Congrats completing your 3rd medium difficult training day in your 1st week ", message: "Make sure to rest your muscles for the next 24 hours now. 😅")
@@ -5551,9 +5593,12 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    setWorkOutTitle3Saved = 0
                                    setWorkOutTitle4Saved = 0
                                    setWorkOutTitle5Saved = 0
+                                   
+                                   //Resetting Pre-Saved Variables; Previous
                                    setWorkOutCounterReference = 0
-                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsCompleted")
-                                   setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                   userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
+                                   setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                                    
                                    secondsCounterReference = 10
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
@@ -5563,6 +5608,27 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    
                                    userDefaultsReference.userDefaults.set(true, forKey: "week1day3MediumCompletion")
                                    week1day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3MediumCompletion")
+                                   
+                                   //Previous Count Saved Completion;
+                                   setWorkOutTitle1Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
+                                   setWorkOutTitle1Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle1Saved")
+                                   
+                                   setWorkOutTitle2Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle2Saved, forKey: "setWorkOutTitle2Saved")
+                                   setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
+                                   
+                                   setWorkOutTitle3Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle3Saved, forKey: "setWorkOutTitle3Saved")
+                                   setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
+                                   
+                                   setWorkOutTitle4Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle4Saved, forKey: "setWorkOutTitle4Saved")
+                                   setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
+                                   
+                                   setWorkOutTitle5Saved = 0
+                                   userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
+                                   setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
                          
                                }
                                
