@@ -757,7 +757,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.imageReference.image = UIImage(named: "LogoReference")
         
-        
         if let initialWorkout = userDefaultsReference.userDefaults.value(forKey: "InitialWorkout") as? Bool
         {
 
@@ -920,7 +919,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
         
                       
                            // MARK: - Week 1, Day 1, Basic Resume
-                           if(inputEntered <= 5 && daySelected == "0" && week1day1BasicCompletion == false || week1day1BasicCompletion == false && setWorkOutTitle1Saved == 1 || week1day1BasicCompletion == false)
+                           if(inputEntered <= 5 && daySelected == "0" && week1day1BasicCompletion == false || week1day1BasicCompletion == false && setWorkOutTitle1Saved == 1)
                            {
                                Set1Title.text = programDataTransfer?.Week1Low1[0]
                                Set1Title.layer.masksToBounds = true
@@ -1034,9 +1033,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if (secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                {
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                                   
                                    //Count Saved Completion
                                    setWorkOutTitle5Saved = 5
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
@@ -1111,9 +1107,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                   secondsCounterReference = 10
                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    
+                                  //In order to move to the next; 
                                   userDefaultsReference.userDefaults.set(true, forKey: "week1day1BasicCompletion")
                                   week1day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1BasicCompletion")
 
+                                   userDefaultsReference.userDefaults.set(false, forKey: "week1day2BasicCompletion")
+                                   week1day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2BasicCompletion")
+                                   
+                                   userDefaultsReference.userDefaults.set(false, forKey: "week1day3BasicCompletion")
+                                   week1day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3BasicCompletion")
+                                   
                                    //Resetting Pre-Saved Variables; Previous
                                    setWorkOutCounterReference = 0
                                    setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
@@ -12905,8 +12908,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 
                                 if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                 {
-                                    //Showing Interestial Ads;
-                                    randomInterestialAds()
                                     
                                     //Count Saved Completion
                                     setWorkOutTitle5Saved = 5
@@ -13133,9 +13134,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 
                                 if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                 {
-                                    
-                                    //Showing Interestial Ads;
-                                    randomInterestialAds()
                                   
                                     //Count Saved Completion
                                     setWorkOutTitle5Saved = 5
