@@ -10110,7 +10110,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            //..Week 2, Day 1 - Advanced: 11-20
                            if (inputEntered >= 11 && daySelected == "3" && week2day1AdvanceCompletion == false || week1day3AdvanceCompletion == true && week2day1AdvanceCompletion == false && week2day2AdvanceCompletion == false && setWorkOutTitle1Saved == 1)
                            {
-                               Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                               Set1Title.text = programDataWeek2Day1?.Week1High1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
                                Set1Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10138,7 +10138,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                       userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
                                       setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
 
-                                   Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
+                                   Set2Title.text = programDataWeek2Day1?.Week1High1[1]
                                    Set2Title.layer.masksToBounds = true
                                    Set2Title.layer.cornerRadius = 10
                                    Set2Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10173,7 +10173,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                   Set3Title.text = programDataWeek2Day1?.Week1High1[2]
                                    Set3Title.layer.masksToBounds = true
                                    Set3Title.layer.cornerRadius = 10
                                    Set3Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10207,7 +10207,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                   Set4Title.text = programDataWeek2Day1?.Week1High1[3]
                                    Set4Title.layer.masksToBounds = true
                                    Set4Title.layer.cornerRadius = 10
                                    Set4Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10220,9 +10220,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                {
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                                   
+                                    
                                    //Count Saved Completion
                                    setWorkOutTitle5Saved = 5
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
@@ -10238,7 +10236,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                   Set5Title.text = programDataWeek2Day1?.Week1Medium1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10311,6 +10309,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(true, forKey: "week2day1AdvanceCompletion")
                                    week2day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1AdvanceCompletion")
                                    
+                                   //In order to move to the next;
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week2day1AdvanceCompletion")
+                                   week2day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1AdvanceCompletion")
+
+                                    userDefaultsReference.userDefaults.set(false, forKey: "week2day2AdvanceCompletion")
+                                   week2day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2AdvanceCompletion")
+                                    
+                                    userDefaultsReference.userDefaults.set(false, forKey: "week2day3AdvanceCompletion")
+                                   week2day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3AdvanceCompletion")
+                                   
                                    //Previous Count Saved Completion;
                                    setWorkOutTitle1Saved = 1
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
@@ -10340,7 +10348,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                             //..Week 2, Day 2 - Advanced: 11-20
                            if (inputEntered >= 11 && daySelected == "4" && week2day2AdvanceCompletion == false || week2day1AdvanceCompletion == true && week2day2AdvanceCompletion == false && week2day3AdvanceCompletion == false && setWorkOutTitle1Saved == 1)
                            {
-                               Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                               Set1Title.text = programDataWeek2Day2?.Week1High1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
                                Set1Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10368,7 +10376,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                       userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
                                       setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
 
-                                   Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
+                                   Set2Title.text = programDataWeek2Day2?.Week1High1[1]
                                    Set2Title.layer.masksToBounds = true
                                    Set2Title.layer.cornerRadius = 10
                                    Set2Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10404,7 +10412,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                   Set3Title.text = programDataWeek2Day2?.Week1High1[2]
                                    Set3Title.layer.masksToBounds = true
                                    Set3Title.layer.cornerRadius = 10
                                    Set3Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10437,7 +10445,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                   Set4Title.text = programDataWeek2Day2?.Week1High1[3]
                                    Set4Title.layer.masksToBounds = true
                                    Set4Title.layer.cornerRadius = 10
                                    Set4Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10449,9 +10457,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                {
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                                   
                                    //Count Saved Completion
                                    setWorkOutTitle5Saved = 5
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
@@ -10467,7 +10472,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                   Set5Title.text = programDataWeek2Day2?.Week1High1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10540,6 +10545,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(true, forKey: "week2day2AdvanceCompletion")
                                    week2day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2AdvanceCompletion")
                                    
+                                   //In order to move to the next;
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week2day2AdvanceCompletion")
+                                   week2day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2AdvanceCompletion")
+
+                                    userDefaultsReference.userDefaults.set(false, forKey: "week2day3AdvanceCompletion")
+                                   week2day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3AdvanceCompletion")
+                                    
+                                    userDefaultsReference.userDefaults.set(false, forKey: "week3day1AdvanceCompletion")
+                                   week3day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1AdvanceCompletion")
+                                   
                                    //Previous Count Saved Completion;
                                    setWorkOutTitle1Saved = 1
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
@@ -10568,7 +10583,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            //..Week 2, Day 3 - Advanced: 11-20
                            if (inputEntered >= 11 && daySelected == "5" && week2day3AdvanceCompletion == false || week2day2AdvanceCompletion == true && week2day3AdvanceCompletion == false && week3day1AdvanceCompletion == false && setWorkOutTitle1Saved == 1)
                            {
-                               Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                               Set1Title.text = programDataWeek2Day3?.Week1High1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
                                Set1Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10596,7 +10611,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                       userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
                                       setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
 
-                                   Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
+                                   Set2Title.text = programDataWeek2Day3?.Week1High1[1]
                                    Set2Title.layer.masksToBounds = true
                                    Set2Title.layer.cornerRadius = 10
                                    Set2Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10631,7 +10646,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                   Set3Title.text = programDataWeek2Day3?.Week1High1[2]
                                    Set3Title.layer.masksToBounds = true
                                    Set3Title.layer.cornerRadius = 10
                                    Set3Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10665,7 +10680,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                   Set4Title.text = programDataWeek2Day3?.Week1High1[3]
                                    Set4Title.layer.masksToBounds = true
                                    Set4Title.layer.cornerRadius = 10
                                    Set4Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10678,9 +10693,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                {
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                                   
                                    //Count Saved Completion
                                    setWorkOutTitle5Saved = 5
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
@@ -10696,7 +10708,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                   Set5Title.text = programDataWeek2Day3?.Week1High1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10768,6 +10780,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(true, forKey: "week2day3AdvanceCompletion")
                                    week2day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3AdvanceCompletion")
                                    
+                                   //In order to move to the next;
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week2day3AdvanceCompletion")
+                                   week2day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3AdvanceCompletion")
+
+                                    userDefaultsReference.userDefaults.set(false, forKey: "week3day1AdvanceCompletion")
+                                   week3day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1AdvanceCompletion")
+                                    
+                                    userDefaultsReference.userDefaults.set(false, forKey: "week3day2AdvanceCompletion")
+                                   week3day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2AdvanceCompletion")
+                                   
                                    //Previous Count Saved Completion;
                                    setWorkOutTitle1Saved = 1
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
@@ -10797,7 +10819,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                             //..Week 3, Day 1 - Advanced
                            if (inputEntered > 25 && daySelected == "6" && week3day1AdvanceCompletion == false || week2day3AdvanceCompletion == true && week3day1AdvanceCompletion == false && week3day2AdvanceCompletion == false && setWorkOutTitle1Saved == 1)
                            {
-                               Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                               Set1Title.text = programDataWeek3Day1?.Week1High1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
                                Set1Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10825,7 +10847,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                       userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
                                       setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
 
-                                   Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
+                                   Set2Title.text = programDataWeek3Day1?.Week1High1[1]
                                    Set2Title.layer.masksToBounds = true
                                    Set2Title.layer.cornerRadius = 10
                                    Set2Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10860,7 +10882,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                   Set3Title.text = programDataWeek3Day1?.Week1High1[2]
                                    Set3Title.layer.masksToBounds = true
                                    Set3Title.layer.cornerRadius = 10
                                    Set3Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10894,7 +10916,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                   Set4Title.text = programDataWeek3Day1?.Week1High1[3]
                                    Set4Title.layer.masksToBounds = true
                                    Set4Title.layer.cornerRadius = 10
                                    Set4Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10907,9 +10929,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                
                                if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                {
-                                   //Showing Interestial Ads;
-                                   randomInterestialAds()
-                                   
                                    //Count Saved Completion
                                    setWorkOutTitle5Saved = 5
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
@@ -10925,7 +10944,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                    
-                                   Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                   Set5Title.text = programDataWeek3Day1?.Week1High1[4]
                                    Set5Title.layer.masksToBounds = true
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
@@ -10997,6 +11016,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    userDefaultsReference.userDefaults.set(true, forKey: "week3day1AdvanceCompletion")
                                    week3day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1AdvanceCompletion")
                                    
+                                   //In order to move to the next;
+                                   userDefaultsReference.userDefaults.set(true, forKey: "week3day1AdvanceCompletion")
+                                   week3day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1AdvanceCompletion")
+
+                                    userDefaultsReference.userDefaults.set(false, forKey: "week3day2AdvanceCompletion")
+                                   week3day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2AdvanceCompletion")
+                                    
+                                    userDefaultsReference.userDefaults.set(false, forKey: "week3day3AdvanceCompletion")
+                                   week3day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3AdvanceCompletion")
+                                   
                                    //Previous Count Saved Completion;
                                    setWorkOutTitle1Saved = 1
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
@@ -11026,7 +11055,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                             //..Week 3, Day 2 - Advanced
                             if (inputEntered > 25 && daySelected == "7" && week3day2AdvanceCompletion == false || week3day1AdvanceCompletion == true && week3day2AdvanceCompletion == false && week3day3AdvanceCompletion == false && setWorkOutTitle1Saved == 1)
                             {
-                                Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                                Set1Title.text = programDataWeek3Day2?.Week1High1[0]
                                 Set1Title.layer.masksToBounds = true
                                 Set1Title.layer.cornerRadius = 10
                                 Set1Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11054,7 +11083,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                        userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
                                        setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
 
-                                    Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
+                                    Set2Title.text = programDataWeek3Day2?.Week1High1[1]
                                     Set2Title.layer.masksToBounds = true
                                     Set2Title.layer.cornerRadius = 10
                                     Set2Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11090,7 +11119,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                    Set3Title.text = programDataWeek3Day2?.Week1High1[2]
                                     Set3Title.layer.masksToBounds = true
                                     Set3Title.layer.cornerRadius = 10
                                     Set3Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11123,7 +11152,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                    Set4Title.text = programDataWeek3Day2?.Week1High1[3]
                                     Set4Title.layer.masksToBounds = true
                                     Set4Title.layer.cornerRadius = 10
                                     Set4Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11136,9 +11165,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 
                                 if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                 {
-                                    //Showing Interestial Ads;
-                                    randomInterestialAds()
-                                    
                                     //Count Saved Completion
                                     setWorkOutTitle5Saved = 5
                                     userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
@@ -11154,7 +11180,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                    Set5Title.text = programDataWeek3Day2?.Week1High1[4]
                                     Set5Title.layer.masksToBounds = true
                                     Set5Title.layer.cornerRadius = 10
                                     Set5Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11226,6 +11252,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(true, forKey: "week3day2AdvanceCompletion")
                                     week3day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2AdvanceCompletion")
                                     
+                                    //In order to move to the next;
+                                    userDefaultsReference.userDefaults.set(true, forKey: "week3day2AdvanceCompletion")
+                                    week3day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2AdvanceCompletion")
+
+                                     userDefaultsReference.userDefaults.set(false, forKey: "week3day3AdvanceCompletion")
+                                    week3day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3AdvanceCompletion")
+                                     
+                                     userDefaultsReference.userDefaults.set(false, forKey: "week4day1AdvanceCompletion")
+                                    week4day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1AdvanceCompletion")
+                                    
                                     //Previous Count Saved Completion;
                                     setWorkOutTitle1Saved = 1
                                     userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
@@ -11254,7 +11290,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                             if (inputEntered > 25 && daySelected == "8" && week3day3AdvanceCompletion == false || week3day2AdvanceCompletion == true && week3day3AdvanceCompletion == false && week4day1AdvanceCompletion == false && setWorkOutTitle1Saved == 1)
                             {
                                 
-                                Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                                Set1Title.text = programDataWeek3Day3?.Week1High1[0]
                                 Set1Title.layer.masksToBounds = true
                                 Set1Title.layer.cornerRadius = 10
                                 Set1Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11282,7 +11318,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                        userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
                                        setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
 
-                                    Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
+                                    Set2Title.text = programDataWeek3Day3?.Week1High1[1]
                                     Set2Title.layer.masksToBounds = true
                                     Set2Title.layer.cornerRadius = 10
                                     Set2Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11319,7 +11355,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                    Set3Title.text = programDataWeek3Day3?.Week1High1[2]
                                     Set3Title.layer.masksToBounds = true
                                     Set3Title.layer.cornerRadius = 10
                                     Set3Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11353,7 +11389,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                    Set4Title.text = programDataWeek3Day3?.Week1High1[3]
                                     Set4Title.layer.masksToBounds = true
                                     Set4Title.layer.cornerRadius = 10
                                     Set4Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11365,9 +11401,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 
                                 if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                 {
-                                    //Showing Interestial Ads;
-                                    randomInterestialAds()
-                                    
+                                  
                                     //Count Saved Completion
                                     setWorkOutTitle5Saved = 5
                                     userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
@@ -11383,7 +11417,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                    Set5Title.text = programDataWeek3Day3?.Week1High1[4]
                                     Set5Title.layer.masksToBounds = true
                                     Set5Title.layer.cornerRadius = 10
                                     Set5Title.layer.backgroundColor = UIColor.white.cgColor
@@ -11453,6 +11487,17 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     
                                     userDefaultsReference.userDefaults.set(true, forKey: "week3day3AdvanceCompletion")
                                     week3day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3AdvanceCompletion")
+                                    
+                                    //In order to move to the next;
+                                    userDefaultsReference.userDefaults.set(true, forKey: "week3day3AdvanceCompletion")
+                                    week3day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3AdvanceCompletion")
+
+                                     userDefaultsReference.userDefaults.set(false, forKey: "week4day1AdvanceCompletion")
+                                    week4day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1AdvanceCompletion")
+                                     
+                                     userDefaultsReference.userDefaults.set(false, forKey: "week4day2AdvanceCompletion")
+                                    week4day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2AdvanceCompletion")
+                                    
                                     
                                     //Previous Count Saved Completion;
                                     setWorkOutTitle1Saved = 1
