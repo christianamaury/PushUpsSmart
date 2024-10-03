@@ -121,7 +121,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     
     var week1day1Validated: Bool = false
     
-    var testing1: Bool = true
     var week1day1BasicCompletion: Bool = false
     var week1day1MediumCompletion: Bool = false
     var week1day1AdvanceCompletion: Bool = false
@@ -369,10 +368,31 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
             self.userDefaultsReference.userDefaults.removeObject(forKey: "InitialWorkout")
             self.userDefaultsReference.userDefaults.set(false, forKey: "InitialWorkout")
             
-            
             self.userDefaultsReference.userDefaults.removeObject(forKey: "AgreementAccepted")
-            self.userDefaultsReference.userDefaults.synchronize()
+
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "AmountOfSeconds")
             
+            //Resetting Pre-Saved Variables; Previous
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "SetsSavedCompleted")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "SetsSavedCompleted")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle1Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle1Saved")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle2Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle2Saved")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle3Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle3Saved")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle4Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle4Saved")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle5Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle5Saved")
+        
+            self.userDefaultsReference.userDefaults.synchronize()
+ 
             //Back to the Main View Controller so the user can also decide if they would like to remove All Ads;
             //Segue Identifier, First View Controller: MainStartViewController
             self.performSegue(withIdentifier: "MainStartViewController", sender: self)
@@ -551,8 +571,30 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
             self.userDefaultsReference.userDefaults.removeObject(forKey: "InitialWorkout")
             self.userDefaultsReference.userDefaults.set(false, forKey: "InitialWorkout")
             
-            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "AmountOfSeconds")
             self.userDefaultsReference.userDefaults.removeObject(forKey: "AgreementAccepted")
+            
+            //Resetting Pre-Saved Variables; Previous
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "SetsCompleted")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "SetsSavedCompleted")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "SetsSavedCompleted")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle1Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle1Saved")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle2Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle2Saved")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle3Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle3Saved")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle4Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle4Saved")
+            
+            self.userDefaultsReference.userDefaults.removeObject(forKey: "setWorkOutTitle5Saved")
+            self.userDefaultsReference.userDefaults.set(0, forKey: "setWorkOutTitle5Saved")
+            
             self.userDefaultsReference.userDefaults.synchronize()
             
             //Back to the Main View Controller so the user can also decide if they would like to remove All Ads;
@@ -583,8 +625,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
             setWorkOutCounterReference = setWorkOutCounterReference + 1
             userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
             setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
-            
-            
             
             
             //Saving second time
@@ -831,25 +871,135 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
             
             //Settings Values to the variables
             setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
-            
             setWorkOutTitle1Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle1Saved")
             setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
             setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
             setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
             setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
+            
+            //Checking if the user already completed this sets;
+            week1day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1BasicCompletion")
+            week1day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1MediumCompletion")
+            week1day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1AdvanceCompletion")
+            week1day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2BasicCompletion")
+            week1day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2AdvanceCompletion")
+            week1day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3BasicCompletion")
+            week1day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2MediumCompletion")
+            week1day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3MediumCompletion")
+            week1day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3AdvanceCompletion")
+            week2day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1BasicCompletion")
+            week2day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1AdvanceCompletion")
+            week2day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1MediumCompletion")
+            week2day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2BasicCompletion")
+            week2day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2MediumCompletion")
+            week2day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2AdvanceCompletion")
+            week2day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3MediumCompletion")
+            week2day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3MediumCompletion")
+            week2day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3AdvanceCompletion")
+            week3day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1BasicCompletion")
+            week3day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1MediumCompletion")
+            week3day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1AdvanceCompletion")
+            week3day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2BasicCompletion")
+            week3day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2MediumCompletion")
+            week3day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2AdvanceCompletion")
+            week3day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3BasicCompletion")
+            week3day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3MediumCompletion")
+            week3day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3AdvanceCompletion")
+            week4day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1BasicCompletion")
+            week4day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1MediumCompletion")
+            week4day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1AdvanceCompletion")
+            week4day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2BasicCompletion")
+            week4day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2MediumCompletion")
+            week4day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2AdvanceCompletion")
+            week4day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day3BasicCompletion")
+            week4day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day3MediumCompletion")
+            week4day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day3AdvanceCompletion")
+            week5day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1BasicCompletion")
+            week5day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1MediumCompletion")
+            week5day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1AdvanceCompletion")
+            week5day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2BasicCompletion")
+            week5day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2MediumCompletion")
+            week5day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2AdvanceCompletion")
+            week5day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3BasicCompletion")
+            week5day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3MediumCompletion")
+            week5day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3AdvanceCompletion")
+            week6day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1BasicCompletion")
+            week6day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1MediumCompletion")
+            week6day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1AdvanceCompletion")
+            week6day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2BasicCompletion")
+            week6day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2MediumCompletion")
+            week6day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2AdvanceCompletion")
+            week6day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3BasicCompletion")
+            week6day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3MediumCompletion")
+            week6day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3AdvanceCompletion")
          
             //..Calling the resumeUserProgram
             resumeUserPushUpProgram()
-            
         }
         
-        //TESTING
-        //Settings Values to the variables
+//        //TESTING
+//        //Settings Values to the variables
         setWorkOutTitle1Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle1Saved")
         setWorkOutTitle2Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle2Saved")
         setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
         setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
         setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
+        
+        //Checking if the user already completed this sets;
+//        week1day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1BasicCompletion")
+//        week1day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1MediumCompletion")
+//        week1day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1AdvanceCompletion")
+//        week1day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2BasicCompletion")
+//        week1day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2AdvanceCompletion")
+//        week1day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3BasicCompletion")
+//        week1day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2MediumCompletion")
+//        week1day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3MediumCompletion")
+//        week1day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3AdvanceCompletion")
+//        week2day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1BasicCompletion")
+//        week2day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1AdvanceCompletion")
+//        week2day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1MediumCompletion")
+//        week2day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2BasicCompletion")
+//        week2day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2MediumCompletion")
+//        week2day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2AdvanceCompletion")
+//        week2day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3MediumCompletion")
+//        week2day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3MediumCompletion")
+//        week2day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3AdvanceCompletion")
+//        week3day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1BasicCompletion")
+//        week3day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1MediumCompletion")
+//        week3day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1AdvanceCompletion")
+//        week3day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2BasicCompletion")
+//        week3day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2MediumCompletion")
+//        week3day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2AdvanceCompletion")
+//        week3day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3BasicCompletion")
+//        week3day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3MediumCompletion")
+//        week3day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3AdvanceCompletion")
+//        week4day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1BasicCompletion")
+//        week4day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1MediumCompletion")
+//        week4day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1AdvanceCompletion")
+//        week4day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2BasicCompletion")
+//        week4day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2MediumCompletion")
+//        week4day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2AdvanceCompletion")
+//        week4day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day3BasicCompletion")
+//        week4day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day3MediumCompletion")
+//        week4day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day3AdvanceCompletion")
+//        week5day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1BasicCompletion")
+//        week5day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1MediumCompletion")
+//        week5day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1AdvanceCompletion")
+//        week5day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2BasicCompletion")
+//        week5day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2MediumCompletion")
+//        week5day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2AdvanceCompletion")
+//        week5day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3BasicCompletion")
+//        week5day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3MediumCompletion")
+//        week5day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3AdvanceCompletion")
+//        week6day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1BasicCompletion")
+//        week6day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1MediumCompletion")
+//        week6day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1AdvanceCompletion")
+//        week6day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2BasicCompletion")
+//        week6day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2MediumCompletion")
+//        week6day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2AdvanceCompletion")
+//        week6day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3BasicCompletion")
+//        week6day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3MediumCompletion")
+//        week6day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3AdvanceCompletion")
 
         //Calling the Regular Program;
         pushUpProgram()
@@ -860,64 +1010,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
     // MARK: - Resume User PushUp Program whenever the user restart the application
     func resumeUserPushUpProgram()
     {
-        //Checking if the user already completed this sets;
-        week1day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1BasicCompletion")
-        
-        week1day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1MediumCompletion")
-        week1day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1AdvanceCompletion")
-        week1day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2BasicCompletion")
-        week1day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2AdvanceCompletion")
-        week1day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3BasicCompletion")
-        week1day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2MediumCompletion")
-        week1day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3MediumCompletion")
-        week1day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3AdvanceCompletion")
-        week2day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1BasicCompletion")
-        week2day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1AdvanceCompletion")
-        week2day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day1MediumCompletion")
-        week2day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2BasicCompletion")
-        week2day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2MediumCompletion")
-        week2day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day2AdvanceCompletion")
-        week2day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3MediumCompletion")
-        week2day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3MediumCompletion")
-        week2day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week2day3AdvanceCompletion")
-        week3day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1BasicCompletion")
-        week3day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1MediumCompletion")
-        week3day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day1AdvanceCompletion")
-        week3day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2BasicCompletion")
-        week3day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2MediumCompletion")
-        week3day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day2AdvanceCompletion")
-        week3day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3BasicCompletion")
-        week3day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3MediumCompletion")
-        week3day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week3day3AdvanceCompletion")
-        week4day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1BasicCompletion")
-        week4day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1MediumCompletion")
-        week4day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day1AdvanceCompletion")
-        week4day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2BasicCompletion")
-        week4day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2MediumCompletion")
-        week4day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day2AdvanceCompletion")
-        week4day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day3BasicCompletion")
-        week4day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day3MediumCompletion")
-        week4day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week4day3AdvanceCompletion")
-        week5day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1BasicCompletion")
-        week5day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1MediumCompletion")
-        week5day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day1AdvanceCompletion")
-        week5day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2BasicCompletion")
-        week5day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2MediumCompletion")
-        week5day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day2AdvanceCompletion")
-        week5day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3BasicCompletion")
-        week5day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3MediumCompletion")
-        week5day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week5day3AdvanceCompletion")
-        week6day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1BasicCompletion")
-        week6day1MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1MediumCompletion")
-        week6day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1AdvanceCompletion")
-        week6day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2BasicCompletion")
-        week6day2MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2MediumCompletion")
-        week6day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2AdvanceCompletion")
-        week6day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3BasicCompletion")
-        week6day3MediumCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3MediumCompletion")
-        week6day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3AdvanceCompletion")
-        
-                      
+ 
                            // MARK: - Week 1, Day 1, Basic Resume
                            if(inputEntered <= 5 && daySelected == "0" && week1day1BasicCompletion == false || week1day1BasicCompletion == false && setWorkOutTitle1Saved == 1)
                            {
@@ -927,13 +1020,13 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                Set1Title.layer.backgroundColor = UIColor.white.cgColor
                             
                                //Amounts of Rest Time available;
-                              userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
+                               userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                
                               //Saving Previous WorkoutReference number;
-                               setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                               setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                                userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
-                               setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
-                            
+                               setWorkOutCounterReference = userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
+                                
                                if(secondsCounterReference == 0 || setWorkOutTitle2Saved == 2 || setWorkOutCounterReference == 1)
                                {
                                    
@@ -1053,13 +1146,13 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    Set5Title.layer.cornerRadius = 10
                                    Set5Title.layer.backgroundColor = UIColor.white.cgColor
                                    
-                                   //Rest seconds Time; TESTING
+                                   //Rest seconds Time;
                                    userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                    secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                              
                                }
                                
-                               if(secondsCounterReference == 0 || setWorkOutCounterReference == 5)
+                                if(secondsCounterReference == 0 || setWorkOutCounterReference == 5)
                                {
 
                                    //Rest seconds Time;
@@ -1106,17 +1199,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                                                       
                                   secondsCounterReference = 10
                                   userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
-                                   
-                                  //In order to move to the next; 
-                                  userDefaultsReference.userDefaults.set(true, forKey: "week1day1BasicCompletion")
-                                  week1day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1BasicCompletion")
-
-                                   userDefaultsReference.userDefaults.set(false, forKey: "week1day2BasicCompletion")
-                                   week1day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2BasicCompletion")
-                                   
-                                   userDefaultsReference.userDefaults.set(false, forKey: "week1day3BasicCompletion")
-                                   week1day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3BasicCompletion")
-                                   
+                                  
                                    //Resetting Pre-Saved Variables; Previous
                                    setWorkOutCounterReference = 0
                                    setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
@@ -1143,7 +1226,17 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                    setWorkOutTitle5Saved = 0
                                    userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
                                    setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
+                                    
+                                   //In order to move to the next;
+                                    userDefaultsReference.userDefaults.set(true, forKey: "week1day1BasicCompletion")
+                                   week1day1BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day1BasicCompletion")
                                    
+                                    userDefaultsReference.userDefaults.set(false, forKey: "week1day2BasicCompletion")
+                                   week1day2BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day2BasicCompletion")
+                           
+                                   userDefaultsReference.userDefaults.set(false, forKey: "week1day3BasicCompletion")
+                                   week1day3BasicCompletion = userDefaultsReference.userDefaults.bool(forKey: "week1day3BasicCompletion")
+                                  
                                }
                            }
                    
@@ -1155,11 +1248,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                        Set1Title.layer.masksToBounds = true
                        Set1Title.layer.cornerRadius = 10
                        Set1Title.layer.backgroundColor = UIColor.white.cgColor
-                       
-                       setWorkOutTitle3Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle3Saved")
-                       setWorkOutTitle4Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle4Saved")
-                       setWorkOutTitle5Saved = userDefaultsReference.userDefaults.integer(forKey: "setWorkOutTitle5Saved")
-                       
+
                        //Saving Previous WorkoutReference number;
                         setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
                         userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
@@ -1223,8 +1312,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            //Rest seconds Time;
                            userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                            secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
-                           
-                        
+                  
                        }
                        
                        if(secondsCounterReference == 0 || setWorkOutTitle4Saved == 4 || setWorkOutCounterReference == 3)
@@ -12949,7 +13037,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                             //..Week 6, Day 1 - Advanced
                             if (inputEntered > 60 && daySelected == "15" && week6day1AdvanceCompletion == false || week5day3AdvanceCompletion == true && week6day1AdvanceCompletion == false && week6day2AdvanceCompletion == false && setWorkOutTitle1Saved == 1)
                             {
-                                Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                                Set1Title.text = programDataWeek6Day1?.Week1High1[0]
                                 Set1Title.layer.masksToBounds = true
                                 Set1Title.layer.cornerRadius = 10
                                 Set1Title.layer.backgroundColor = UIColor.white.cgColor
@@ -12977,7 +13065,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                        userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
                                        setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
 
-                                    Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
+                                    Set2Title.text = programDataWeek6Day1?.Week1High1[1]
                                     Set2Title.layer.masksToBounds = true
                                     Set2Title.layer.cornerRadius = 10
                                     Set2Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13012,7 +13100,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                    Set3Title.text = programDataWeek6Day1?.Week1High1[2]
                                     Set3Title.layer.masksToBounds = true
                                     Set3Title.layer.cornerRadius = 10
                                     Set3Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13045,7 +13133,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                    Set4Title.text = programDataWeek6Day1?.Week1High1[3]
                                     Set4Title.layer.masksToBounds = true
                                     Set4Title.layer.cornerRadius = 10
                                     Set4Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13057,9 +13145,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 
                                 if(secondsCounterReference == 0 || setWorkOutTitle5Saved == 5 || setWorkOutCounterReference == 4)
                                 {
-                                    //Showing Interestial Ads;
-                                    randomInterestialAds()
-                                    
                                     //Count Saved Completion
                                     setWorkOutTitle5Saved = 5
                                     userDefaultsReference.userDefaults.set(setWorkOutTitle5Saved, forKey: "setWorkOutTitle5Saved")
@@ -13075,7 +13160,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                    Set5Title.text = programDataWeek6Day1?.Week1High1[4]
                                     Set5Title.layer.masksToBounds = true
                                     Set5Title.layer.cornerRadius = 10
                                     Set5Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13146,6 +13231,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(true, forKey: "week6day1AdvanceCompletion")
                                     week6day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1AdvanceCompletion")
                                     
+                                    //In order to move to the next;
+                                    userDefaultsReference.userDefaults.set(true, forKey: "week6day1AdvanceCompletion")
+                                    week6day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1AdvanceCompletion")
+
+                                     userDefaultsReference.userDefaults.set(false, forKey: "week6day2AdvanceCompletion")
+                                    week6day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2AdvanceCompletion")
+                                     
+                                     userDefaultsReference.userDefaults.set(false, forKey: "week6day3AdvanceCompletion")
+                                    week6day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3AdvanceCompletion")
+                                    
                                     //Previous Count Saved Completion;
                                     setWorkOutTitle1Saved = 1
                                     userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
@@ -13174,7 +13269,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                             //..Week 6, Day 2 - Advanced..
                             if (inputEntered > 60 && daySelected == "16" && week6day2AdvanceCompletion == false || week6day1AdvanceCompletion == true && week6day2AdvanceCompletion == false && week6day3AdvanceCompletion == false && setWorkOutTitle1Saved == 1)
                             {
-                                Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                                Set1Title.text = programDataWeek6Day2?.Week1High1[0]
                                 Set1Title.layer.masksToBounds = true
                                 Set1Title.layer.cornerRadius = 10
                                 Set1Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13202,7 +13297,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                        userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
                                        setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
 
-                                    Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
+                                    Set2Title.text = programDataWeek6Day2?.Week1High1[1]
                                     Set2Title.layer.masksToBounds = true
                                     Set2Title.layer.cornerRadius = 10
                                     Set2Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13239,7 +13334,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                    Set3Title.text = programDataWeek6Day2?.Week1High1[2]
                                     Set3Title.layer.masksToBounds = true
                                     Set3Title.layer.cornerRadius = 10
                                     Set3Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13274,7 +13369,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                    Set4Title.text = programDataWeek6Day2?.Week1High1[3]
                                     Set4Title.layer.masksToBounds = true
                                     Set4Title.layer.cornerRadius = 10
                                     Set4Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13303,7 +13398,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                    Set5Title.text = programDataWeek2Day2?.Week1High1[4]
                                     Set5Title.layer.masksToBounds = true
                                     Set5Title.layer.cornerRadius = 10
                                     Set5Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13375,6 +13470,16 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(true, forKey: "week6day2AdvanceCompletion")
                                     week6day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2AdvanceCompletion")
                                     
+                                    //In order to move to the next;
+                                    userDefaultsReference.userDefaults.set(true, forKey: "week6day1AdvanceCompletion")
+                                    week6day1AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day1AdvanceCompletion")
+
+                                     userDefaultsReference.userDefaults.set(true, forKey: "week6day2AdvanceCompletion")
+                                    week6day2AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day2AdvanceCompletion")
+                                     
+                                     userDefaultsReference.userDefaults.set(false, forKey: "week6day3AdvanceCompletion")
+                                    week6day3AdvanceCompletion = userDefaultsReference.userDefaults.bool(forKey: "week6day3AdvanceCompletion")
+                                    
                                     //Previous Count Saved Completion;
                                     setWorkOutTitle1Saved = 1
                                     userDefaultsReference.userDefaults.set(setWorkOutTitle1Saved, forKey: "setWorkOutTitle1Saved")
@@ -13405,7 +13510,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                             if (inputEntered > 60 && daySelected == "17" && week6day3AdvanceCompletion == false || week6day1AdvanceCompletion == true && week6day2AdvanceCompletion == true && week6day3AdvanceCompletion  == false && setWorkOutTitle1Saved == 1)
                             
                             {
-                                Set1Title.text = programDataWeek1Day2?.Week1Low1[0]
+                                Set1Title.text = programDataWeek6Day3?.Week1High1[0]
                                 Set1Title.layer.masksToBounds = true
                                 Set1Title.layer.cornerRadius = 10
                                 Set1Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13433,7 +13538,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                        userDefaultsReference.userDefaults.set(setWorkOutCounterReference, forKey: "SetsSavedCompleted")
                                        setWorkOutCounterReference =   userDefaultsReference.userDefaults.integer(forKey: "SetsSavedCompleted")
 
-                                    Set2Title.text = programDataWeek1Day2?.Week1Low1[1]
+                                    Set2Title.text = programDataWeek6Day3?.Week1High1[1]
                                     Set2Title.layer.masksToBounds = true
                                     Set2Title.layer.cornerRadius = 10
                                     Set2Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13468,7 +13573,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set3Title.text = programDataTransfer?.Week1Low1[2]
+                                    Set3Title.text = programDataWeek6Day3?.Week1High1[2]
                                     Set3Title.layer.masksToBounds = true
                                     Set3Title.layer.cornerRadius = 10
                                     Set3Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13501,7 +13606,8 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set4Title.text = programDataTransfer?.Week1Low1[3]
+                                    Set4Title.text = programDataWeek6Day3?.Week1High1[3]
+                                    Set4Title.layer.masksToBounds = true
                                     Set4Title.layer.masksToBounds = true
                                     Set4Title.layer.cornerRadius = 10
                                     Set4Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13529,7 +13635,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                     userDefaultsReference.userDefaults.set(secondsCounterReference, forKey: "AmountOfSeconds")
                                     secondsCounterReference = userDefaultsReference.userDefaults.integer(forKey: "AmountOfSeconds")
                                     
-                                    Set5Title.text = programDataTransfer?.Week1Low1[4]
+                                    Set5Title.text = programDataWeek6Day3?.Week1High1[4]
                                     Set5Title.layer.masksToBounds = true
                                     Set5Title.layer.cornerRadius = 10
                                     Set5Title.layer.backgroundColor = UIColor.white.cgColor
@@ -13640,7 +13746,6 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                            //..Week 1, Day 1, Basic: < 5
                            if(inputEntered <= 5 && daySelected == "0" && week1day1BasicCompletion == false || week1day1BasicCompletion == false)
                            {
-                               
                                Set1Title.text = programDataTransfer?.Week1Low1[0]
                                Set1Title.layer.masksToBounds = true
                                Set1Title.layer.cornerRadius = 10
@@ -20928,10 +21033,7 @@ class FourthVController: UIViewController, GADBannerViewDelegate, GADInterstitia
                                 }
                                 
                                 if(secondsCountReference == 0 && setWorkOutCounter == 4){
-                                    
-                                    //Showing Interestial Ads
-                                    randomInterestialAds()
-                            
+                                 
                                     Set5Title.text = programDataWeek6Day3?.Week1High1[4]
                                     Set5Title.layer.masksToBounds = true
                                     Set5Title.layer.cornerRadius = 10
